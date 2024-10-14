@@ -1,3 +1,30 @@
+/*
+Đề bài
+Số hoàn hảo (hay còn gọi là số hoàn chỉnh, số hoàn thiện hoặc số hoàn thành) là một số nguyên dương mà tổng các ước nguyên dương chính thức của số đó (ngoại trừ số đó) bằng chính nó. Ví dụ: 6 có tổng các ước số không tính nó là: 1+2+3 =6 nên 6 là số hoàn hảo.
+
+Cho số nguyên n (1≤n≤10^18). Hãy kiểm tra xem n có phải là số hoàn hảo hay không?
+
+Dữ liệu vào
+- Số lượng testcase t(t≥1).
+
+- Với mỗi testcase, nhập vào một số nguyên dương n.
+
+Dữ liệu ra
+- Mỗi dòng tương ứng với một testcase ghi số x với x=1 nếu đó là số hoàn hảo, x=0 nếu không phải.
+
+Ví dụ
+Input #1 
+
+2
+15
+6
+
+Output #1 
+
+0
+1
+/*
+
 #include <bits/stdc++.h>
 using namespace std;
 int solve(int a)
