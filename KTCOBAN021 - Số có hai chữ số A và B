@@ -1,0 +1,71 @@
+/*
+Đề bài
+Cho số nguyên dương N và hai chữ số A và B (với 0<N≤10^16 ; 0≤A, B≤9 ; A+B>0). Hãy tìm số nhỏ nhất thoả mãn điều kiện:
+
+1)Lớn hơn hoặc bằng N
+
+2)Chỉ gồm các chữ số A và B với tổng số chữ số A bằng tổng số chữ số B
+
+Ví dụ:N=4500, A=4 và B=7 thì số cần tìm là 4747 (có 2 chữ số 4 và 2 chữ số 7,4747>4500).
+
+Dữ liệu vào
+-Số lượng testcase t (0<t<10^3).
+
+- Với mỗi testcase, mỗi dòng chứa số nguyên dương N và 2 chữ số A và B, trong đó 0<N≤10^16.
+
+
+Dữ liệu ra
+- Mỗi dòng tương ứng với một testcase ghi kết quả tìm được.
+
+Ví dụ
+Input #1
+
+2
+4500 4 7
+100 1 2
+
+Output #1 
+
+4747
+1122
+/*
+
+#include <bits/stdc++.h>
+#define MAX 1000000000000000001
+using namespace std;
+typedef unsigned long long ull;
+ull recursive(ull a, short x, short y, int xcount, int ycount, int so_chu_so, ull result)  \\hàm đệ quy
+{
+    if (xcount + ycount > so_chu_so + 2 || result > MAX)  \\nếu các giá trị không thỏa mãn thì trả về -1
+        return -1;
+    if (xcount == ycount && result >= a)  
+        return result;
+    return min(recursive(a, x, y, xcount + 1, ycount, so_chu_so, result * 10 + x),  \\đệ quy tăng số lần xuất hiện của x
+               recursive(a, x, y, xcount, ycount + 1, so_chu_so, result * 10 + y)); \\đệ quy tăng số lần xuất hiện của y
+}
+ull solve(ull a, short x, short y)
+{
+    int so_chu_so = log10(a) + 1;  \\số chữ số của n
+    int xcount = 0, ycount = 0;
+    ull result = 0;
+    if (x == y)
+    {
+        while (result < a)
+            result = result * 10 + x;
+        return result;
+    }
+    return recursive(a, x, y, xcount, ycount, so_chu_so, result);
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        ull a;
+        cin >> a;
+        short x, y;
+        cin >> x >> y;
+        cout << solve(a, x, y) << endl;
+    }
+}
