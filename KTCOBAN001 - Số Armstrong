@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+int solve(long long a)
+{
+    long long n = a; 
+    int sochu = log10(a) + 1; \tính số chữ số của 1 số nguyên
+    long long sum = 0; 
+    while (a != 0)
+    {
+        int b = pow(a % 10, sochu);
+        sum += b;
+        a /= 10;
+    }
+    if (sum == n)
+        cout << "1" << endl;
+    else
+        cout << "0" << endl;
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        long long a;
+        cin >> a;
+        solve(a);
+    }
+}
