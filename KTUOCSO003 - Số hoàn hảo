@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+int solve(int a)
+{
+    int sum = 1;
+    for (int i = 2; i <= sqrt(a); i++)
+    {
+        if (a % i == 0)
+        {
+            if (a / i == i) 
+                sum += i;
+            else
+                sum += i + a / i;
+        }
+    }
+    if (sum != a || a == 1) //với a = 1 thì a không là số hoàn hảo
+        cout << "0" << endl;
+    else
+        cout << "1" << endl;
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int a;
+        cin >> a;
+        solve(a);
+    }
+}
