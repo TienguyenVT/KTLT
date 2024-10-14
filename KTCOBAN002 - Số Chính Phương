@@ -1,3 +1,30 @@
+/*
+Đề bài
+Số chính phương là số có thể biểu diễn bằng bình phương của một số. Ví dụ: 9=3^2.
+
+Cho số tự nhiên k(1≤k≤18). Hãy tìm số chính phương nhỏ nhất có k chữ số và mỗi chữ số của nó cũng là số chính phương.
+
+
+Dữ liệu vào
+-Số lượng testcase t (0<t<10^3).
+
+- Với mỗi testcase, nhập vào một số tự nhiên k.
+
+Dữ liệu ra
+- Mỗi dòng tương ứng với một testcase ghi số tìm được,nếu không tìm được thì ghi -1.
+
+Ví dụ
+Input #1 
+
+2
+1
+3	
+Output #1 
+
+1
+100
+/*
+
 #include <bits/stdc++.h>
 using namespace std;
 long long scp(long long a)
