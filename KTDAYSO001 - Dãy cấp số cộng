@@ -1,0 +1,68 @@
+/*
+Đề bài
+Dãy cấp số cộng là một dãy số thoả mãn điều kiện: hai phần tử liên tiếp nhau sai khác nhau một hằng số (gọi là công sai của cấp số cộng).
+Ví dụ: Dãy số: 3, 5, 7, 9, 11,... là một cấp số cộng với các phân tử liên tiếp sai khác nhau với công sai là 2.
+
+Cho một dãy số nguyên a gồm n phần tử (1≤n≤10^6). Hãy kiểm tra xem dãy đó có phải là dãy cấp số cộng hay không?
+
+Dữ liệu vào
+- Dữ liệu nhập vào theo khuôn dạng sau:
+- Dòng đầu tiên nhập số nguyên dương n
+- Dòng tiếp theo chứa n phần tử của dãy số nguyên a với -10^15≤a≤10^1.
+
+Dữ liệu ra
+- Ghi kết quả là YES hoặc NO tương ứng với mỗi testcase trên một dòng xem dãy đó có phải dãy cấp số cộng hay không.
+
+Ví dụ
+Input #1 
+
+5
+1 4 7 9 12
+Output #1 
+
+NO
+Input #2 
+
+6
+2 4 6 8 10 12 
+Output #2 
+
+YES
+/*
+#include <iostream>
+using namespace std;
+int solve(int arr[], int n)
+{
+    if (n < 3)
+        return 1;
+    else
+    {
+        int difference = arr[1] - arr[0];
+        for (int i = 2; i < n; i++)
+        {
+            if ((arr[i] - arr[i - 1]) != difference)
+            {
+                return 0;
+                break;
+            }
+        }
+        return 1;
+    }
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        int arr[n];
+        for (int i = 0; i < n; i++)
+            cin >> arr[i];
+        if (solve(arr, n))
+            cout << "YES" << endl;
+        else
+            cout << "NO" << endl;
+    }
+}
