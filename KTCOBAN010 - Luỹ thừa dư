@@ -1,0 +1,51 @@
+/*
+Đề bài
+Cho hai số nguyên dương a và n với 1≤a,n≤10^9. Tính phần dư của phép tính a^n chia cho 10^9+7.
+
+Dữ liệu vào
+Số lượng testcase t (t≥1).
+
+Với mỗi testcase, hai số nguyên dương a và n cách nhau bởi dấu cách.
+
+Dữ liệu ra
+Mỗi dòng tương ứng với một testcase ghi kết quả tìm được.
+
+Ví dụ
+Input #1 
+
+2
+1 1000
+5 7
+Output #1 
+
+1
+78125
+/*
+#include <iostream>
+#define MOD 1000000007;
+typedef long long ll;
+using namespace std;
+ll solve(ll a, ll n)
+{
+    ll result = 1;
+    while (n != 0)
+    {
+        if (n % 2 != 0)
+            result = (result * a) % MOD;
+
+        a = (a * a) % MOD;
+        n /= 2;
+    }
+    return result;
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        ll a, n;
+        cin >> a >> n;
+        cout << solve(a, n) << endl;
+    }
+}
