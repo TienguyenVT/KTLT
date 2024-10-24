@@ -1,4 +1,4 @@
-*/
+/*
 Đề bài
 Cho một số nguyên dương trong hệ nhị phân (hệ cơ số 2). Hãy chuyển đổi số đó sang hệ cơ số 10.
 
@@ -34,7 +34,7 @@ int main()
         string a;
         cin >> a;
         int result = 0;
-        int tmp = 1;
+        long long tmp = 1;
         for (int i = a.length() - 1; i >= 0; i--)
         {
             if (a[i] == '1')
