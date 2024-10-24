@@ -1,4 +1,4 @@
-/*
+*/
 Đề bài
 Cho một số nguyên dương trong hệ nhị phân (hệ cơ số 2). Hãy chuyển đổi số đó sang hệ cơ số 10.
 
@@ -22,7 +22,7 @@ Output #1
 5
 7
 10
-/*
+*/
 #include <bits/stdc++.h>
 using namespace std;
 int main()
