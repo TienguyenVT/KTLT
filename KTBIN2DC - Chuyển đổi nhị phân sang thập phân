@@ -1,0 +1,46 @@
+/*
+Đề bài
+Cho một số nguyên dương trong hệ nhị phân (hệ cơ số 2). Hãy chuyển đổi số đó sang hệ cơ số 10.
+
+Dữ liệu vào
+- Số lượng test T (0<T<10^3).
+
+- Với mỗi test ứng với mỗi dòng chứa một xâu nhị phân có độ dài không vượt quá 63.
+
+Dữ liệu ra
+- Mỗi dòng tương ứng với một test ghi kết quả tìm được.
+
+Ví dụ
+Input #1 
+
+3
+101
+111
+1010
+Output #1 
+
+5
+7
+10
+/*
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        string a;
+        cin >> a;
+        int result = 0;
+        int tmp = 1;
+        for (int i = a.length() - 1; i >= 0; i--)
+        {
+            if (a[i] == '1')
+                result += tmp;
+            tmp = tmp << 1; // dịch trái 1 bit. VD: với tmp =1(0001) dịch trái 1 bít tmp = 2(0010) -> tmp = 4(0100),...
+        }
+        cout << result << endl;
+    }
+}
