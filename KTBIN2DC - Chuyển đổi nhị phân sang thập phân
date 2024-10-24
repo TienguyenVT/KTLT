@@ -33,13 +33,12 @@ int main()
     {
         string a;
         cin >> a;
-        int result = 0;
-        long long tmp = 1;
+        long long result = 0, tmp = 1;
         for (int i = a.length() - 1; i >= 0; i--)
         {
             if (a[i] == '1')
                 result += tmp;
-            tmp = tmp << 1; // dịch trái 1 bit. VD: với tmp =1(0001) dịch trái 1 bít tmp = 2(0010) -> tmp = 4(0100),...
+            tmp <<= 1; // dịch trái 1 bit. VD: với tmp =1(0001) dịch trái 1 bít tmp = 2(0010) -> tmp = 4(0100),...
         }
         cout << result << endl;
     }
