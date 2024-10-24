@@ -1,0 +1,59 @@
+/*
+Đề bài
+Cho hai số nguyên không âm L và R (1≤L≤ R≤10^9 và |R-L|≤10^6). Hãy tìm số có ước số nguyên tố lớn nhất trong khoảng từ L đến R, nếu có nhiều hơn 1số thì hiển thị số có giá trị lớn nhất.
+
+Dữ liệu vào
+-Số lượng testcase t (0<t<10^3).
+
+-Vớimỗi testcase, nhập vào hai số nguyên dương L và R.
+
+Dữ liệu ra
+Mỗi dòng tương ứng một testcase, cho biết số tìm được.
+
+Ví dụ
+Input #1 
+
+2
+1 10
+1 100
+Output #1 
+
+7
+97
+*/
+#include <bits/stdc++.h>
+using namespace std;
+int snt(int a)
+{
+    for (int i = 2; i <= sqrt(a); i++)
+    {
+        if (a % i == 0)
+        {
+            return false;
+            break;
+        }
+    }
+    return true;
+}
+int solve(int a, int b)
+{
+    for (int i = b; i >= a; i--)
+    {
+        if (snt(i))
+        {
+            cout << i << endl;
+            break;
+        }
+    }
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int a, b;
+        cin >> a >> b;
+        solve(a, b);
+    }
+}
