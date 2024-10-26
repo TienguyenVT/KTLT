@@ -1,0 +1,65 @@
+/*
+Đề bài
+Cho số nguyên dương N (1≤N≤10^9). Hãy tìm số không phải là số Fibonacci nhỏ nhất lớn hơn N.
+
+Ví dụ: N=6, Số phi Fibonaci cần tìm là 7.
+
+Dữ liệu vào
+- Số lượng testcase t (0<t<10^3).
+
+- Với mỗi testcase, nhập vào số nguyên dương N.
+
+Dữ liệu ra
+- Mỗi dòng tương ứng một testcase, cho biết kết quả tìm được.
+
+Ví dụ
+Input #1 
+
+2
+4
+10
+Output #1 
+
+6
+11
+*/
+#include <bits/stdc++.h>
+using namespace std;
+int scp(int a)
+{
+    return pow((int)sqrt(a), 2) == a;
+}
+int fibonacci(int a)
+{
+    return (scp(5 * pow(a, 2) + 4) || scp(5 * pow(a, 2) - 4));
+}
+void solve(int a)
+{
+    if (a == 0 || a == 1 || a == 2 || a == 3)
+        cout << "4" << endl;
+    else
+    {
+        int b = a + a / 2;
+        for (int i = a + 1; i <= b; i++)
+        {
+            if (fibonacci(i))
+                continue;
+            else
+            {
+                cout << i << endl;
+                break;
+            }
+        }
+    }
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int a;
+        cin >> a;
+        solve(a);
+    }
+}
