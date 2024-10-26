@@ -1,0 +1,53 @@
+/*
+Đề bài
+Cho số nguyên dương N (1≤N≤10^9). Hãy tính tổng các số Fibonacci chẵn có giá trị không vượt quá N.
+
+Ví dụ: N=8, Tổng các số Fibonnaci chẵn không quá 8 là: 2+8 = 10
+
+Dữ liệu vào
+- Số lượng testcase t (0<t<10^3).
+
+- Với mỗi testcase, nhập vào số nguyên dương N.
+
+Dữ liệu ra
+- Mỗi dòng tương ứng một testcase, cho biết kết quả tìm được.
+
+
+Ví dụ
+Input #1 
+
+2
+8
+100
+Output #1 
+
+10
+44
+*/
+#include <iostream>
+using namespace std;
+int sum_fibonacci(int a)
+{
+    int a1 = 0, a2 = 1, a3;
+    unsigned long long sum = 0;
+    while (a1 <= a)
+    {
+        if (a1 % 2 == 0)
+            sum += a1;
+        a3 = a1 + a2;
+        a1 = a2;
+        a2 = a3;
+    }
+    cout << sum << endl;
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int a;
+        cin >> a;
+        sum_fibonacci(a);
+    }
+}
