@@ -1,0 +1,57 @@
+/*
+Đề bài
+Cho một số nguyên dương x thỏa mãn 10^18 ≥ x ≥ 2. Hãy kiểm tra xem tích các ước nguyên tố của x có nhỏ hơn x hay không. Trong trường hợp x chỉ có một ước nguyên tố, ta định nghĩa tích các ước nguyên tố của x chính là ước nguyên tố duy nhất của x.
+
+Dữ liệu vào
+Số lượng testcase t (t≥1). Với mỗi testcase, nhập vào một số nguyên dương x.
+
+Dữ liệu ra
+Mỗi dòng tương ứng với một testcase ghi chữ YES nếu kết quả kiểm tra đúng, nếu không thì ghi chữ NO.
+
+Ví dụ
+Input #1 
+
+3
+2
+3
+4
+Output #1 
+
+NO
+NO
+YES
+*/
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll solve(ll a)
+{
+    ll b = a;
+    ll ans = 1;
+    for (int i = 2; i <= sqrt(a); i++)
+    {
+        if (a % i == 0)
+        {
+            ans *= i;
+            while (a % i == 0)
+                a /= i;
+        }
+    }
+    if (a != 1)
+        ans *= a;
+    if (ans < b)
+        cout << "YES\n";
+    else
+        cout << "NO\n";
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        ll a;
+        cin >> a;
+        solve(a);
+    }
+}
