@@ -1,13 +1,6 @@
 /*
 Đề bài
-Cho hai số nguyên dương n và m(1≤n, m≤
-1
-0
-15
-10 
-15
- ). Hãy tính tổng các số nguyên dương là ước của n nhưng không phải là ước của m.
-
+Cho hai số nguyên dương n và m(1≤n, m≤10^15). Hãy tính tổng các số nguyên dương là ước của n nhưng không phải là ước của m.
 
 Dữ liệu vào
 - Số lượng test T (0<T<10^3).
