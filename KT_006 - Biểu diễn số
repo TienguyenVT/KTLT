@@ -1,0 +1,75 @@
+/*
+Đề bài
+Cho số nguyên không âm n(0<n≤500) và số tự nhiên m lớn hơn 1 (1<m≤20). Hãy viết chương trình đếm số cách biểu diễn n thành tổng của các số luỹ thừa của m, không tính hoán vị.
+
+Ví dụ:
+n=4, m=2 có 4 cách biểu diễn là:
+4=2^2
+4=2^1+2^1
+4=2^1+2^0+2^0
+4=2^0+2^0+2^0+2^0
+ 
+n=10, m=3 có 5 cách biểu diễn là:
+10=3^2+3^0
+10=3^1+3^1+3^1+3^0
+10=3^1+3^1+3^0+3^0+3^0+3^0
+10=3^1+3^0+3^0+3^0+3^0+3^0+3^0+3^0
+10=3^0+3^0+3^0+3^0+3^0+3^0+3^0+3^0+3^0+3^0
+ 
+Dữ liệu vào
+-Số lượng testcase t (0<t<10^3).
+
+- Với mỗi testcase, nhập vào số nguyên dương n và số tự nhiên m thoả mãn điều kiện 0<n≤500 và 1<m≤20.
+
+Dữ liệu ra
+Mỗi dòng tương ứng một testcase, cho biết số cách tìm được.
+
+
+Ví dụ
+Input #1 
+
+5
+4 2
+10 3
+10 5
+27 9
+500 10
+Output #1 
+
+4
+5
+3
+4
+156
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+int slove()
+{
+	int n, m;
+	cin >> n >> m;
+	vector<int> dp(n + 1, 0);
+	dp[0] = 1;
+	vector<int> powers;
+	int power = 1;
+	while (power <= n)
+	{
+		powers.push_back(power);
+		power *= m;
+	}
+	for (int i = 0; i < powers.size(); i++)
+	{
+		int p = powers[i];
+		for (int j = p; j <= n; j++)
+			dp[j] += dp[j - p];
+	}
+	cout << dp[n] << endl;
+}
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+		slove();
+}
