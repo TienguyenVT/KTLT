@@ -28,7 +28,7 @@ Output #1
 
 4747
 1122
-/*
+*/
 
 #include <bits/stdc++.h>
 #define MAX 1000000000000000001
