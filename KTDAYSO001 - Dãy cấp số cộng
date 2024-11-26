@@ -28,7 +28,8 @@ Input #2
 Output #2 
 
 YES
-/*
+*/
+
 #include <iostream>
 using namespace std;
 int solve(int arr[], int n)
