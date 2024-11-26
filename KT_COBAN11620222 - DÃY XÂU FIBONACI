@@ -17,33 +17,41 @@ Output
 A
 B
 */
-	#include<bits/stdc++.h>
-	#define MAX 92
-	using namespace std;
-	vector <long long> Fibonacci(MAX+1);
-	void fibonacci(){
-		Fibonacci[1] = 1;
-		Fibonacci[2] = 1;
-		for ( int i =3; i<=MAX;i++)
-		  Fibonacci[i]=Fibonacci[i-2]+Fibonacci[i-1];
+
+#include <bits/stdc++.h>
+#define MAX 92
+using namespace std;
+vector<long long> Fibonacci(MAX + 1);
+void fibonacci()
+{
+	Fibonacci[1] = 1;
+	Fibonacci[2] = 1;
+	for (int i = 3; i <= MAX; i++)
+		Fibonacci[i] = Fibonacci[i - 2] + Fibonacci[i - 1];
+}
+char FindChar(int n, long long i)
+{
+	if (n == 1)
+		cout << "A" << endl;
+	else if (n == 2)
+		cout << "B" << endl;
+	else if (i <= Fibonacci[n - 2])
+		return FindChar(n - 2, i);
+	else
+		return FindChar(n - 1, i - Fibonacci[n - 2]);
+}
+int main()
+{
+	fibonacci();
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		int n;
+		long long i;
+		cin >> n >> i;
+		FindChar(n, i);
 	}
-	char FindChar ( int n, long long i){
-		if ( n == 1) cout <<"A"<<endl;
-		else if (n ==2) cout <<"B"<<endl;
-		else if ( i <= Fibonacci[n-2])
-		return FindChar (n-2,i );
-		else
-		return FindChar (n-1, i-Fibonacci[n-2]);
-	}
-	int main(){
-		fibonacci();
-		int t;
-		cin >>t;
-		while (t--){
-			int n;
-			long long i;
-			cin >>n>>i;
-			FindChar(n,i);
-		}
-	}
+}
+
 	
