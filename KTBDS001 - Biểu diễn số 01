@@ -1,0 +1,58 @@
+/*
+Đề bài
+Cho số nguyên dương N (1≤N≤10^5). Hãy đếm số cách biểu diễn N thành tổng của các số tự nhiên khác không và nhỏ hơn N. Do kết quả có thể lớn nên hãy tính theo số dư trong phép chia cho 10^9+7.
+
+Ví dụ: N=5, có 6 cách biểu diễn là:
+
+5 = 4 + 1
+5 = 3 + 2
+5 = 3 + 1 + 1
+5 = 2 + 2 + 1
+5 = 2 + 1 + 1 + 1
+5 = 1+ 1 + 1 + 1 + 1
+
+Dữ liệu vào
+-Số lượng testcase t (0<t<10^3).
+- Với mỗi testcase, nhập vào số nguyên dương N.
+
+Dữ liệu ra
+- Mỗi dòng tương ứng một testcase, cho biết kết quả phép chia số cách biểu diễn tìm được.
+
+
+Ví dụ
+Input #1 
+
+2
+5
+4
+Output #1 
+
+6
+4
+*/
+
+#include <bits/stdc++.h>
+#define MOD 1000000007
+#define MAX 100000
+typedef unsigned long long ull;
+using namespace std;
+int slove()
+{
+	ull n;
+	cin >> n;
+	vector<ull> dp(MAX + 1, 0);
+	dp[0] = 1;
+	for (ull i = 1; i < n; i++)
+	{
+		for (ull j = i; j <= n; j++)
+			dp[j] += dp[j - i] % MOD;
+	}
+	cout << dp[n] % MOD << endl;
+}
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+		slove();
+}
