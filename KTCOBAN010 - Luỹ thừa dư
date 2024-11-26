@@ -20,7 +20,8 @@ Output #1
 
 1
 78125
-/*
+*/
+
 #include <iostream>
 #define MOD 1000000007;
 typedef long long ll;
