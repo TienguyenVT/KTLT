@@ -1,0 +1,56 @@
+/*
+Đề bài
+Cho số nguyên dương N, K (1≤N, K≤20). Hãy đếm số cách biểu diễn N thành tổng của K số tự nhiên.
+
+Ví dụ: N=2 và K=3, có 6 cách biểu diễn là:
+2 = 0+0+2
+2 = 0+2+0
+2 = 2+0+0
+2 = 0+1+1
+2 = 1+0+1
+2 =1+1+0
+
+Dữ liệu vào
+-Số lượng testcase t (0<t<10^3).
+
+- Với mỗi testcase, nhập vào số nguyên dương N và K.
+
+Dữ liệu ra
+- Mỗi dòng tương ứng một testcase, cho biết số cách tìm được.
+
+Ví dụ
+Input #1 
+2
+2 3
+3 2
+Output #1 
+6
+4
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef unsigned long long ull;
+int slove()
+{
+	int n, k;
+	cin >> n >> k;
+	vector<vector<ull>> dp(k + 1, vector<ull>(n + 1, 0));
+	dp[0][0] = 1;
+	for (int i = 1; i <= k; i++) // xét k số tự nhiên
+	{
+		for (int j = 0; j <= n; j++) // xét các số cần dùng
+		{
+			for (int w = 0; w <= j; w++) // số cách các số cần dùng có thể tạo ra
+				dp[i][j] += dp[i - 1][j - w];
+		}
+	}
+	cout << dp[k][n] << endl;
+}
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+		slove();
+}
