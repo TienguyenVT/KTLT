@@ -1,0 +1,50 @@
+/*
+Đề bài
+
+Cho số n, hãy tìm giá trị số Catalan thứ n.
+
+Dữ liệu vào
+-Số lượng testcase t (0<t<10^3).
+
+- Với mỗi testcase, nhập vào số nguyên dương n (1≤n≤31).
+
+Dữ liệu ra
+- Mỗi dòng tương ứng một testcase, cho biết số tìm được.
+
+Ví dụ
+Input #1 
+
+4
+2
+4
+7
+9
+Output #1 
+
+2
+14
+429
+4862
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef unsigned long long ull;
+int main()
+{
+	ull catalan[1000];
+	int t, n;
+	cin >> t;
+	catalan[0] = 1;
+	catalan[1] = 1;
+	for (int i = 1; i <= 31; i++)
+	{
+		for (int j = 0; j <= i; j++)
+			catalan[i + 1] += catalan[j] * catalan[i - j];
+	}
+	while (t--)
+	{
+		cin >> n;
+		cout << catalan[n] << endl;
+	}
+}
