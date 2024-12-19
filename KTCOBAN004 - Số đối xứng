@@ -1,0 +1,43 @@
+/*
+Đề bài
+Một số nguyên dương được gọi là số đối xứng nếu khi viết các chữ số của nó (trong hệ thập phân) theo thứ tự ngược lại ta vẫn được chính số đó. Cho số nguyên dương k (1 ≤ k ≤ 18), đếm xem có bao nhiêu số đối xứng có k chữ số.
+
+Dữ liệu vào
+Số lượng testcase t (t≥1). Với mỗi testcase, nhập vào một số nguyên dương k.
+
+Dữ liệu ra
+Với mỗi số nguyên dương k, ghi ra trên một dòng số lượng số đối xứng có k chữ số.
+
+Ví dụ
+Input #1 
+
+2
+1
+2
+Output #1 
+
+9
+9
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t, k;
+	cin >> t;
+	while (t--)
+	{
+		cin >> k;
+		if (k % 2 == 0)
+			k -= 1;
+		if (k == 1 || k == 2)
+			cout << "9" << endl;
+		else
+		{
+			k = k / 2;
+			unsigned long long sum = 9 * pow(10, k);
+			cout << sum << endl;
+		}
+	}
+}
