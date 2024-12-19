@@ -1,0 +1,50 @@
+/*
+Đề bài
+Số chính phương là số có thể biểu diễn dưới dạng bìnhphương của một số tự nhiên (chẳng hạn 0, 1, 4, 9, 16…).
+
+Hãy viết chương trình đếm số chính phương xem giữa hai số nguyên dương L,R (với1 ≤ L, R ≤10^18).
+
+Dữ liệu vào
+-Số lượng testcase t (0<t<10^3).
+
+- Với mỗi testcase, nhập vào hai số nguyên dương L và R.
+
+Dữ liệu ra
+Mỗi dòng tương ứng với một testcase ghi số các số chính phương tìm được.
+
+Ví dụ
+Input #1 
+
+2
+2 5
+3 25
+Output #1 
+
+1
+4
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef unsigned long long ull;
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		ull a, b;
+		cin >> a >> b;
+		ull x = (ull)sqrt(a);
+		ull y = (ull)sqrt(b);
+		if (pow(x, 2) >= a)
+			a = x;
+		else
+			a = x + 1;
+		if (pow(y, 2) > b)
+			b = y - 1;
+		else
+			b = y;
+		cout << b - a + 1 << endl;
+	}
+}
