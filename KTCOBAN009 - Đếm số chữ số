@@ -1,0 +1,38 @@
+/*
+Đề bài
+Viết chương trình đếm số lượng chữ số của một số nguyên n nhập từ bàn phím (∣n∣≤10^1000).
+
+Dữ liệu vào
+Số lượng testcase t (t≥1). Với mỗi testcase, nhập vào một số nguyên n.
+
+Dữ liệu ra
+Mỗi dòng tương ứng với một testcase ghi một chữ số nguyên là số chữ số đếm được.
+
+Ví dụ
+Input #1 
+
+2
+-1
+234452
+Output #1 
+
+1
+6
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		string n;
+		cin >> n;
+		int count = n.length();
+		if (n[0] == '-')
+			count -= 1;
+		cout << count << endl;
+	}
+}
