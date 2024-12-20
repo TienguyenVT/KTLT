@@ -1,0 +1,69 @@
+/*
+Đề bài
+Cho một dãy số nguyên 
+A1,A2,...,AN​. Bạn có thể thực hiện phép biến đổi sau với số lần tùy ý (có thể không thực hiện lần nào):
+
+Chọn một vị trí i,itừ 1 đến N, và đảo dấu Ai (tức là thay thế Ai bởi −A i).
+
+Hãy cho biết số phép biến đổi ít nhất cần thực hiện, để dãy thu được thỏa mãn tính chất sau:
+
+Tích của hai phần tử bất kì trong dãy đều là số nguyên dương (nói cách khác, với mỗi cặp (i,j) thỏa mãn 1≤i<j≤N, ta có Ai×Aj>0).
+
+Dữ liệu vào
+- Số lượng testcase t(t≥1).
+
+- Với mỗi testcase:
+
+Dòng đầu tiên gồm số nguyên 
+N(2≤N≤10000) - số phần tử của dãy A.
+Dòng thứ hai gồm 
+Nsố nguyên A1​,A2,...,AN(−1000≤Ai≤1000) của dãy A.
+
+Dữ liệu ra
+- Mỗi dòng tương ứng với một testcase ghi ra một số nguyên duy nhất là số phép biến đổi ít nhất cần thực hiện. Trong trường hợp không có cách biến đổi, hãy in ra -1.
+
+Ví dụ
+Input #1 
+
+3
+3
+1 2 -3
+4
+1 2 3 4
+5
+1 3 9 0 -2
+Output #1 
+
+1
+0
+-1
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		int n;
+		cin >> n;
+		int a[n], so = 0, sa = 0, sd = 0;
+		for (int i = 0; i < n; i++)
+			cin >> a[i];
+		for (int i = 0; i < n; i++)
+		{
+			if (a[i] == 0)
+				so++;
+			else if (a[i] < 0)
+				sa++;
+			else
+				sd++;
+		}
+		if (so != 0)
+			cout << "-1" << endl;
+		else
+			cout << min(sa, sd) << endl;
+	}
+}
