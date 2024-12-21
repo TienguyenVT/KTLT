@@ -1,0 +1,43 @@
+/*
+Đề bài
+Cho số nguyên không âm N. Hãy tìm số mũ của ước số lớn nhất có dạng 2^k của S=N!.
+
+Dữ liệu vào
+- Số lượng test T(0<t<10^3).
+
+- Với mỗi test nhập số nguyên N, trong đó 0≤N≤10^18.
+
+Dữ liệu ra
+Mỗi dòng tương ứng với một test ghi kết quả tìm được.
+
+Ví dụ
+Input #1 
+
+2
+1
+6
+Output #1 
+
+0
+4
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int tc;
+	cin >> tc;
+	while (tc--)
+	{
+		long long n, output = 0, tmp = 2;
+		cin >> n;
+		while (tmp <= n)
+		{
+			output = output + n / tmp;
+			tmp = tmp * 2;
+		}
+		cout << output << endl;
+	}
+	return 0;
+}
