@@ -1,0 +1,67 @@
+/*
+Đề bài
+Hãy thực hiện thuật toán sắp xếp chèn trên dãy N số nguyên. Ghi ra các bước thực hiện thuật toán.
+
+
+Dữ liệu vào
+Dòng 1 nhập số lương testcase T>0
+
+Dòng 2 ghi số N (không quá 100). Dòng 3 ghi N số nguyên dương (không quá 100).
+
+
+Dữ liệu ra
+Ghi ra màn hình từng bước thực hiện thuật toán. Mỗi bước trên một dòng, các số trong dãy cách nhau đúng một khoảng trống với mỗi test
+
+
+Ví dụ
+Input #1 
+
+4
+5 7 3 2
+Output #1 
+
+Buoc 3: 2 3 5 7
+Buoc 2: 3 5 7
+Buoc 1: 5 7
+Buoc 0: 5
+*/
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		int n;
+		cin >> n;
+		vector<int> a(n);
+		vector<string> steps;
+		for (int i = 0; i < n; i++)
+		{
+			cin >> a[i];
+		}
+		for (int i = 0; i < n; i++)
+		{
+			int pos = i - 1, x = a[i];
+			while (pos >= 0 && x < a[pos])
+			{
+				a[pos + 1] = a[pos];
+				--pos;
+			}
+			a[pos + 1] = x;
+			stringstream ss;
+			ss << "Buoc " << i << ": ";
+			for (int j = 0; j <= i; j++)
+			{
+				ss << a[j] << " ";
+			}
+			steps.push_back(ss.str());
+		}
+		for (int i = steps.size() - 1; i >= 0; i--)
+		{
+			cout << steps[i] << endl;
+		}
+	}
+	return 0;
+}
