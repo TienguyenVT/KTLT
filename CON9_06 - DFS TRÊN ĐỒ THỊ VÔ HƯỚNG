@@ -1,0 +1,73 @@
+/*
+Đề bài
+Cho đồ thị vô hướng G=<V, E> được biểu diễn dưới dạng danh sách cạnh. Hãy viết thuật toánduyệt theo chiều sâu bắt đầu tại đỉnh u∈V (DFS(u)=?)
+
+Dữ liệu vào
+- Dòng đầu tiên đưa vào T là số lượng bộ test.
+
+- Những dòng tiếp theo đưa vào các bộ test. Mỗi bộ test gồm |E| +1 dòng: dòng đầu tiênđưa vào ba số |V|, |E| tương ứng với số đỉnh và số cạnh của đồ thị, và u là đỉnh xuấtphát; |E| dòng tiếp theo đưa vào các bộ đôi u∈V, v∈V tương ứng với một cạnh của đồthị.
+
+- T, |V|, |E| thỏa mãn ràng buộc: 1≤T≤200; 1≤|V|≤10^3; 1≤|E|≤|V|(|V|-1)/2;
+
+Dữ liệu ra
+-Đưa ra danh sách các đỉnh được duyệt theo thuật toán DFS(u) của mỗi test theo khuôndạng của ví dụ dưới đây.
+
+Ví dụ
+Input #1 
+
+1
+6 9 5
+1 2
+1 3
+2 3
+2 4
+3 4
+3 5
+4 5
+4 6
+5 6
+Output #1 
+
+5 3 1 2 4 6
+*/
+#include <bits/stdc++.h>
+using namespace std;
+int n, m, a;
+vector<int> adj[1001];
+bool visited[1001];
+void inp()
+{
+	cin >> n >> m >> a;
+	for (int i = 0; i < m; i++)
+	{
+		int x, y;
+		cin >> x >> y;
+		adj[x].push_back(y);
+		adj[y].push_back(x); // có hướng thì bỏ dòng này
+	}
+	memset(visited, false, sizeof(visited));
+}
+void dfs(int u)
+{
+	cout << u << " ";
+	visited[u] = true;
+	for (int x : adj[u])
+	{
+		if (!visited[x])
+		{
+			dfs(x);
+		}
+	}
+}
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		inp();
+		dfs(a);
+		cout << endl;
+	}
+	return 0;
+}
