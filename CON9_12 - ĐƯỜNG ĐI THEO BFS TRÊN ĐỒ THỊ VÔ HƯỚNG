@@ -1,0 +1,84 @@
+/*
+Đề bài
+Cho đồ thị vô hướng G=<V, E> được biểu diễn dưới dạng danh sách cạnh. Hãy tìm đường đi từđỉnh s∈V đến đỉnh t∈V trên đồ thị bằng thuật toán BFS.
+
+Dữ liệu vào
+- Dòng đầu tiên đưa vào T là số lượng bộ test.
+
+- Những dòng tiếp theo đưa vào các bộ test. Mỗi bộ test gồm 2 dòng: dòng đầu tiên đưavào bốn số |V|, |E|, s∈V, t∈V tương ứng với số đỉnh, số cạnh, đỉnh u, đỉnh v; Dòng tiếp theo đưa vào các bộ đôi u∈V, v∈V tương ứng với một cạnh của đồ thị.
+
+- T, |V|, |E| thỏa mãn ràng buộc: 1≤T≤100; 1≤|V|≤10^3; 1≤|E|≤|V|(|V|-1)/2;
+
+
+Dữ liệu ra
+-Đưa ra đường đi từ đỉnh s đến đỉnh t của mỗi test theo thuật toán BFS của mỗi test theokhuôn dạng của ví dụ dưới đây. Nếu không có đáp án, in ra -1.
+
+Ví dụ
+Input #1 
+
+1
+6 9 1 6
+1 2 1 3 2 3 2 5 3 4 3 5 4 5 4 6 5 6
+Output #1 
+
+1 2 5 6
+*/
+#include <bits/stdc++.h>
+using namespace std;
+int n,m,a,b;
+vector<int>adj[1001];
+bool visited[1001];
+int parent[1001];
+void inp(){
+	cin>>n>>m>>a>>b;
+	for (int i=0;i<m;i++){
+		int x,y;
+		cin>>x>>y;
+		adj[x].push_back(y);
+		adj[y].push_back(x); // có hướng thì bỏ dòng này 
+	}
+	memset(visited,false,sizeof(visited));
+	memset(parent,-1,sizeof(parent));
+}
+void bfs(int u){
+	queue<int>q;
+	q.push(u);
+	visited[u]=true;
+	parent[u]=-1;
+	while(!q.empty()){
+		int v=q.front();
+		q.pop();
+		for (int x:adj[v]){
+			if(!visited[x]){
+				q.push(x);
+				visited[x]=true;
+				parent[x]=v;
+			}
+		}
+	}
+}
+void findPath(int a,int b){
+	if(!visited[b]){
+		cout<<-1;
+		return;
+	}
+	vector<int>path;
+	for (int v=b;v!=-1;v=parent[v]){
+		path.push_back(v);
+	}
+	reverse(path.begin(),path.end());
+	for (int x:path){
+		cout<<x<<" ";
+	}
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		inp();
+		bfs(a);
+		findPath(a,b);
+		cout<<endl;
+	}
+	return 0;
+}
