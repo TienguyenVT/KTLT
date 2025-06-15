@@ -1,0 +1,56 @@
+/*
+Đề bài
+Cho một bàn cờ vua có kích thước n * n, ta biết ràng quân hậu có thể di chuyển theo chiều ngang, dọc, chéo. Vấn đề đặt ra rằng, có n quân hậu, bạn cần đếm số cách đặt n quân hậu này lên bàn cờ sao cho với 2 quân hậu bất kì, chúng không “ăn” nhau.
+
+Dữ liệu vào
+Input:Một số nguyên dương n duy nhất (không quá 10)
+
+Dữ liệu ra
+Output:Số cách đặt quân hậu.
+
+Ví dụ
+Input #1 
+
+4
+Output #1 
+
+2
+*/
+#include <bits/stdc++.h>
+using namespace std;
+int n, x[100], d1[100], d2[100], cot[100];
+int Try(int i)
+{
+	int sum = 0;
+	for (int j = 1; j <= n; j++)
+	{
+		if (cot[j] == 0 && d1[i - j + n] == 0 && d2[i + j - 1] == 0)
+		{
+			x[i] = j;
+			cot[j] = d1[i - j + n] = d2[i + j - 1] = 1;
+			if (i == n)
+			{
+				sum++;
+			}
+			else
+			{
+				sum += Try(i + 1);
+			}
+			cot[j] = d1[i - j + n] = d2[i + j - 1] = 0;
+		}
+	}
+	return sum;
+}
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		cin >> n;
+		memset(cot, 0, sizeof(cot));
+		memset(d1, 0, sizeof(d1));
+		memset(d2, 0, sizeof(d2));
+		cout << Try(1) << endl;
+	}
+}
