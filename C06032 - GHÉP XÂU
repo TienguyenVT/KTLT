@@ -1,0 +1,85 @@
+/*
+Cho M xâu kí tự. Nhiệm vụ của bạn là hãy ghép các xâu này thành một từ, sao cho từ thu được có thứ tự từ điển nhỏ nhất.
+
+Input:
+
+Dòng đầu tiên là số lượng bộ test T (T ≤ 100).
+
+Mỗi test gồm số nguyên M (M ≤ 9) là số lượng các từ, theo sau là M xâu.
+
+Mỗi xâu có độ dài không vượt quá 10.
+
+Output: 
+
+Với mỗi test hãy in ra xâu có thứ tự từ điển nhỏ nhất tìm được.
+
+Ví dụ:
+
+Input
+
+5
+
+4 acm ptit for students
+
+5 k duz q rc lvraw
+
+3 a bb cc
+
+5 asf asfi asfi afsi okj
+
+5 ukuy hopji lie jaa dcyi
+
+ 
+Output
+
+
+acmforptitstudents
+
+duzklvrawqrc
+
+abbcc
+
+afsiasfasfiasfiokj
+
+dcyihopjijaalieukuy
+*/
+#include <stdio.h>
+#include <string.h>
+int cmp(char a[], char b[])
+{
+    char c[500], d[500];
+    strcpy(c, a);
+    strcpy(d, b);
+    strcat(c, b);
+    strcat(d, a);
+    if (strcmp(c, d) > 0)
+        return 1;
+    return 0;
+}
+void swap(char a[], char b[])
+{
+    char c[200];
+    strcpy(c, a);
+    strcpy(a, b);
+    strcpy(b, c);
+}
+int main()
+{
+    int t;
+    scanf("%d", &t);
+    while (t--)
+    {
+        int n;
+        scanf("%d", &n);
+        char a[100][200];
+        for (int i = 0; i < n; i++)
+            scanf("%s", a[i]);
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++)
+                if (cmp(a[i], a[j]))
+                    swap(a[i], a[j]);
+        for (int i = 0; i < n; i++)
+            printf("%s", a[i]);
+        printf("\n");
+    }
+}
