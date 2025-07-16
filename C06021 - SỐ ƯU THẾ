@@ -1,0 +1,81 @@
+/*
+Cho một số nguyên dương lớn có nhiều hơn 20 chữ số nhưng không quá 1000 chữ số. Một số nguyên dương được coi là “số ưu thế chẵn” nếu số chữ số của nó là chẵn và số chữ số chẵn nhiều hơn số chữ số lẻ.
+
+Một số nguyên dương được coi là “số ưu thế lẻ” nếu số chữ số của nó là lẻ và số chữ số lẻ nhiều hơn số chữ số chẵn.
+
+Hãy kiểm tra xem số đó có phải là số ưu thế (chẵn hoặc lẻ) hay không. Chú ý: trường hợp số lượng chữ số chẵn và số lượng chữ số lẻ bằng nhau thì không được coi là số ưu thế.
+
+Dữ liệu vào
+
+Dòng đầu ghi số bộ test, không quá 10
+Mỗi bộ test là một dãy ký tự có độ dài không quá 1000, không có khoảng trống
+Kết quả
+
+Nếu dữ liệu vào không phải là một số nguyên hợp lệ (có ký tự không phải số hoặc bắt đầu bằng chữ số 0) thì in ra INVALID
+Nếu dữ liệu vào thỏa mãn là số ưu thế thì in ra YES, nếu không in ra NO
+Ví dụ
+
+Input
+
+Output
+
+3
+
+01234aa32432432432534545b987978
+
+1234567890123456789000
+
+999999999999999999999999999999
+
+INVALID
+
+YES
+
+NO
+*/
+#include <stdio.h>
+#include <string.h>
+int check(char a[])
+{
+    int n = strlen(a);
+    if (a[0] == '0')
+        return -1;
+    int sc = 0, sl = 0, d = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] == '0' || a[i] == '2' || a[i] == '4' || a[i] == '6' || a[i] == '8')
+        {
+            sc++;
+            d++;
+        }
+        else if (a[i] == '1' || a[i] == '3' || a[i] == '5' || a[i] == '7' || a[i] == '9')
+        {
+            sl++;
+            d++;
+        }
+        else
+            return -1;
+    }
+    if (sc > sl && n % 2 == 0)
+        return 1;
+    if (sl > sc && n % 2 != 0)
+        return 1;
+    return 0;
+}
+int main()
+{
+    int t;
+    scanf("%d", &t);
+    while (t--)
+    {
+        char a[1005];
+        scanf("%s", a);
+        int k = check(a);
+        if (k == 1)
+            printf("YES\n");
+        else if (k == 0)
+            printf("NO\n");
+        else
+            printf("INVALID\n");
+    }
+}
