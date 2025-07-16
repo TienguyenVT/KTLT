@@ -1,0 +1,34 @@
+/*
+Cho xâu ký tự S có độ dài không quá 100. Hãy loại bỏ các từ trùng nhau trong xâu.
+
+Input:
+
+Chỉ có một dòng ghi xâu S.
+
+Output:
+
+Ghi ra kết quả sau khi loại các từ trùng nhau.
+
+Ví dụ:
+
+Input
+
+Output
+
+mon thcs2 hoc la mon 2tc hoc
+
+mon thcs2 hoc la 2tc
+*/
+#include <stdio.h>
+#include <string.h>
+int main(){
+	char a[102][100],b[100];
+	int pos=0;
+	while(scanf("%s",&b)!=-1) strcpy(a[pos++],b);
+	for(int i=0;i<pos;i++){
+		for(int j=i+1;j<pos;j++){
+			if(strcmp(a[j],a[i])==0) a[j][0]=0;
+		}
+		if(a[i][0]!=0) printf("%s ",a[i]);
+	}
+}
