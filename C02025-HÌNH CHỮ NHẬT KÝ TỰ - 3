@@ -1,0 +1,99 @@
+/*
+Nhập vào số hàng và số cột của hình chữ nhật (không quá 20). Vẽ hình chữ nhật ký tự theo nguyên tắc tương ứng theo mẫu trong các ví  dụ dưới đây.
+
+Input
+
+Chỉ có một số dòng ghi số hàng và số cột của hình chữ nhật (không quá 20).
+
+Output
+
+Ghi ra kết quả theo mẫu.
+
+Ví dụ
+
+Input
+
+4 4
+
+
+
+3 5
+
+
+5 3
+
+
+Output
+
+@ABC
+
+ABCC
+
+BCCC
+
+CCCC
+
+
+@ABCD
+
+ABCDD
+
+BCDDD
+
+
+@AB
+
+ABB
+
+BBB
+
+BBB
+
+BBB
+*/
+#include <stdio.h>
+int main(){
+	int n,m;
+	scanf("%d%d",&n,&m);
+	printf("@");
+	for(int i=0;i<m-1;i++){
+		printf("%c",'A'+i);
+	}
+	printf("\n");
+	if(n<=m){
+		int k=m-2;
+		char f='A';
+		for(int i=0;i<n-1;i++){
+			for(int j=0;j<k;j++){
+				printf("%c",f+j);
+			}
+			k--;
+			f++;
+			for(int j=k;j<m-1;j++){
+				printf("%c",'A'+m-2);
+			}
+			printf("\n");
+		}
+	}
+	else{
+		int k=m-2;
+		char f='A';
+		for(int i=0;i<m-1;i++){
+			for(int j=0;j<k;j++){
+				printf("%c",f+j);
+			}
+			k--;
+			f++;
+			for(int j=k;j<m-1;j++){
+				printf("%c",'A'+m-2);
+			}
+			printf("\n");
+		}
+		for(int i=m-1;i<n-1;i++){
+			for(int i=0;i<m;i++){
+				printf("%c",'A'+m-2);
+			}
+			printf("\n");
+		}
+	}
+}
