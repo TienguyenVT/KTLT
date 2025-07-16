@@ -1,0 +1,74 @@
+/*
+Cho một số nguyên dương lớn có nhiều hơn 20 chữ số nhưng không quá 1000 chữ số. Hãy kiểm tra xem số đó có đầy đủ tất cả các chữ số từ 0 đến 9 hay không.
+
+Dữ liệu vào
+
+Dòng đầu ghi số bộ test, không quá 10
+Mỗi bộ test là một dãy ký tự có độ dài không quá 1000, không có khoảng trống
+Kết quả
+
+Nếu dữ liệu vào không phải là một số nguyên hợp lệ (có ký tự không phải số hoặc bắt đầu bằng chữ số 0) thì in ra INVALID
+Nếu dữ liệu vào thỏa mãn đầy đủ thì in ra YES, nếu không in ra NO
+Ví dụ
+
+Input
+
+Output
+
+3
+
+01234aa32432432432534545b987978
+
+123444444444444566666666667890
+
+324562783924723543243243242354354354333234324
+
+INVALID
+
+YES
+
+NO
+*/
+#include <stdio.h>
+#include <string.h>
+char a[11] = "0123456789";
+void check(char s[])
+{
+    int d[1000] = {}, n = strlen(s), x = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (s[0] == '0')
+        {
+            printf("INVALID\n");
+            return;
+        }
+        if (s[i] < '0' || s[i] > '9')
+        {
+            printf("INVALID\n");
+            return;
+        }
+        for (int j = 0; j < 10; j++)
+            if (s[i] == a[j])
+                d[j]++;
+    }
+    for (int i = 0; i < 10; i++)
+        if (d[i] != 0)
+            x++;
+    if (x == 0)
+        printf("INVALID\n");
+    else if (x == 10)
+        printf("YES\n");
+    else
+        printf("NO\n");
+}
+int main()
+{
+    int t;
+    scanf("%d", &t);
+    while (t--)
+    {
+        char a[1005];
+        scanf("%s", a);
+        check(a);
+    }
+}
