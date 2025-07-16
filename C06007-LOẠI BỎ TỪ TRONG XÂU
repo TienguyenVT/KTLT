@@ -1,0 +1,43 @@
+/*
+Cho xâu ký tự S1 và một từ S2. Viết chương trình loại bỏ tất cả các từ S2 xuất hiện trong S1
+
+Input:
+
+Dòng đầu ghi xâu S1 (độ dài không quá 100).
+
+Dòng thứ 2 ghi từ S2.
+
+Output:
+
+Ghi ra xâu S1 sau khi đã loại bỏ các từ S2.
+
+Ví dụ:
+
+Input
+
+Output
+
+mon thcs2 la mon 2tc
+
+mon
+
+thcs2 la 2tc
+*/
+#include <stdio.h>
+#include <string.h>
+int main(){
+	char s2[200],a[100][100],k;
+	int pos1=0;
+	while(scanf("%s",&a[pos1])!=-1){
+		pos1++;
+		k=getchar();
+		if(k==10) break;
+	}
+	gets(s2);
+	for(int i=0;i<pos1;i++){
+		if(strcmp(a[i],s2)==0){
+			a[i][0]=0;
+		}
+		if(a[i][0]!=0) printf("%s ",a[i]);
+	}
+}
