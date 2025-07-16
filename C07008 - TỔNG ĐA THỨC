@@ -1,0 +1,77 @@
+/*
+Cho hai đa thức có bậc không quá 10000 (chỉ viết ra các phần tử có hệ số khác 0). Hãy tính tổng hai đa thức đó.
+
+Input: Dòng đầu ghi số bộ test. Mỗi bộ test có hai dòng, mỗi dòng ghi một đa thức theo mẫu như trong ví dụ. Chú ý: Bậc của các hạng tử luôn theo thứ tự giảm dần, trong đa thức chỉ có phép cộng và luôn được viết đầy đủ hệ số + số mũ (kể cả mũ 0).
+
+Output: Ghi ra một dòng đa thức tổng tính được (theo mẫu như ví dụ)
+
+Ví dụ:
+
+Input
+
+1
+
+3*x^8 + 7*x^2 + 4*x^0
+
+11*x^6 + 9*x^2 + 2*x^1 + 3*x^0
+
+ 
+Output
+
+
+3*x^8 + 11*x^6 + 16*x^2 + 2*x^1 + 7*x^0
+*/
+#include <stdio.h>
+#include <string.h>
+void Do(char a[], int f[])
+{
+    int i = 0, n = strlen(a);
+    while (i < n)
+    {
+        int d = 0, s = 0;
+        if (a[i] < '0' || a[i] > '9')
+        {
+            i++;
+            continue;
+        }
+        while (i < n && a[i] >= '0' && a[i] <= '9')
+        {
+            d = d * 10 + a[i] - '0';
+            i++;
+        }
+        while (a[i] < '0' || a[i] > '9')
+            i++;
+        while (i < n && a[i] >= '0' && a[i] <= '9')
+        {
+            s = s * 10 + a[i] - '0';
+            i++;
+        }
+        f[s] += d;
+    }
+}
+int main()
+{
+    int t;
+    scanf("%d\n", &t);
+    while (t--)
+    {
+        int f[10005] = {}, ok = 0;
+        char a[100000], b[100000];
+        gets(a);
+        gets(b);
+        Do(a, f);
+        Do(b, f);
+        for (int i = 10000; i >= 0; i--)
+        {
+            if (f[i])
+            {
+                if (ok)
+                    printf(" + ");
+                printf("%d*x^%d", f[i], i);
+                if (!ok)
+                    ok = 1;
+            }
+        }
+        printf("\n");
+    }
+}
