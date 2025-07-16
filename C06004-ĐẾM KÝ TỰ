@@ -1,0 +1,36 @@
+/*
+Viết chương trình nhập vào một xâu ký tự S, thực hiện phân tích xâu đã nhập chứa bao nhiêu chữ cái, chữ số và các ký tự khác.
+
+
+Input:
+
+Chỉ có một dòng ghi xâu S.
+
+Output:
+
+Ghi ra kết quả theo mẫu trong ví dụ: số chữ cái, số chữ số, số các ký tự khác.
+
+Ví dụ:
+
+Input
+
+Output
+
+mon thcs mon THCS 2 ...
+
+14 1 8
+*/
+#include <stdio.h>
+#include <string.h>
+int main(){
+	char a[100000];
+	gets(a);
+	int n=strlen(a),x=0,y=0,z=0;
+	for(int i=0;i<n;i++){
+		if(a[i]>=65&&a[i]<=90) x++;
+		else if(a[i]>=97&&a[i]<=122) x++;
+		else if(a[i]>=48&&a[i]<=57) y++;
+		else z++;
+	}
+	printf("%d %d %d",x,y,z);
+}
