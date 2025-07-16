@@ -1,0 +1,89 @@
+/*
+Nhập vào số hàng và số cột của hình chữ nhật (không quá 9). Vẽ hình chữ nhật số theo nguyên tắc tương ứng theo mẫu trong các ví  dụ dưới đây.
+
+Input
+
+Chỉ có một số dòng ghi số hàng và số cột của hình chữ nhật (không quá 9).
+
+Output
+
+Ghi ra kết quả theo mẫu.
+
+Ví dụ
+
+Input
+4 4
+
+3 5
+
+5 3
+Output
+
+1234
+
+2343
+
+3432
+
+4321
+
+
+
+12345
+
+23454
+
+34543
+
+
+
+123
+
+232
+
+321
+
+432
+
+543
+*/
+#include <stdio.h>
+int main(){
+	int m,n,k=0,h;
+	scanf("%d%d",&m,&n);
+	if(m<=n){
+		for(int i=1;i<=m;i++){
+			h=0;
+			for(int j=k;j<n;j++){
+				h++;
+				printf("%d",j+1);
+			}
+			for(int j=n-1;j>=h;j--){
+				printf("%d",j);
+			}
+			k++;
+			printf("\n");
+		}
+	}
+	else{
+		for(int i=1;i<=n;i++){
+			h=0;
+			for(int j=k;j<n;j++){
+				h++;
+				printf("%d",j+1);
+			}
+			for(int j=n-1;j>=h;j--){
+				printf("%d",j);
+			}
+			k++;
+			printf("\n");
+		}
+		for(int i=n;i<m;i++){
+			printf("%d",i+1);
+			for(int j=i;j>i-(n-1);j--){
+				printf("%d",j);
+			}
+			printf("\n");
+		}
+	}
+}
