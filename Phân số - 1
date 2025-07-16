@@ -1,0 +1,74 @@
+/*
+Viết chương trình xây dựng cấu trúc Phân số gồm hai phần tử là tử số và mẫu số. Các giá trị đều nguyên dương và không quá 18 chữ số.
+
+Sau đó thực hiện nhập vào một phân số và in ra phân số đó ở dạng tối giản.
+
+Input
+
+Có hai số nguyên dương lần lượt là tử số và mẫu số.
+
+Output
+
+Ghi ra phân số tối giản như trong ví dụ
+
+Ví dụ
+
+Input
+
+123 456
+Output
+
+
+41/152
+*/
+#include <stdio.h>
+
+unsigned long long timUCLN(unsigned long long a, unsigned long long b) {
+    if (a == 0) return b;
+    if (b == 0) return a;
+    unsigned long long shift = 0;
+    while (((a | b) & 1) == 0) {
+        a >>= 1;
+        b >>= 1;
+        shift++;
+    }
+    while ((a & 1) == 0) a >>= 1;
+    do {
+        while ((b & 1) == 0) b >>= 1;
+        if (a > b) {
+            unsigned long long temp = a;
+            a = b;
+            b = temp;
+        }
+        b -= a;
+    } while (b != 0);
+    return a << shift;
+}
+void inPhanSo(unsigned long long tu, unsigned long long mau) {
+    if (mau == 1) {
+        printf("%llu\n", tu);
+        return;
+    }
+    	if ( mau == 0|| mau==0 && tu ==0){
+    	printf("-1\n");
+    	return;
+	}
+    if ( tu == 0){
+    	printf("0\n");
+    	return;
+	}
+
+    unsigned long long ucln = timUCLN(tu, mau);
+    tu /= ucln;
+    mau /= ucln;
+    if (mau == 1) printf("%llu\n", tu);
+    else printf("%llu/%llu\n", tu, mau);
+}
+
+int main() {
+
+        unsigned long long tu, mau;
+        scanf("%llu %llu", &tu, &mau);
+        inPhanSo(tu, mau);
+    return 0;
+}
