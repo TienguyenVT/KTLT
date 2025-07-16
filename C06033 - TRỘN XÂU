@@ -1,0 +1,84 @@
+/*
+Cho hai xâu ký tự S1 và S2 với độ dài N và chỉ chứa các ký tự từ A đến H. Chúng ta thực hiện thao tác như sau:
+
+Bước đầu tiên tạo S12 bằng cách lấy các ký tự lần lượt trong S1 và S2 từ trái sang phải, lấy một ký tự trong S2 trước, sau đó đến 1 ký tự trong S1 và cứ như vậy. Ví dụ S1 =  ABCHAD, S2= DEFDAC thì S12 = DAEBFCDHAACD
+Sau đó ta lại lấy nữa bên trái của S12 thành S1 mới, nửa bên phải thành S2 mới. Trong ví dụ trên S1 mới là DAEBFC, S2 mới là DHAACD. Rồi lại tiếp tục như vậy trong các bước tiếp theo.
+Cho trước một xâu S có độ dài 2*N. Bài toán đặt ra là liệu có thể tạo ra xâu S sau một số lần lặp hay không.
+
+Dữ liệu vào
+
+Có nhiều bộ test, mỗi bộ test có bốn dòng. Dòng đầu ghi số N không quá 200. Dòng thứ 2 ghi S1, dòng thứ 3 ghi S2. Dòng cuối ghi xâu S. Input kết thúc với một dòng ghi số 0.
+
+Kết quả
+
+Ghi ra số bước lặp cần thiết. Nếu không thể tìm được thì ghi ra -1.
+
+Ví dụ
+
+Input
+
+4
+
+AHAH
+
+HAHA
+
+HHAAAAHH
+
+3
+
+CDE
+
+CDE
+
+EEDDCC
+
+0
+
+Output
+
+
+2
+
+-1
+
+ 
+*/
+#include <stdio.h>
+#include <string.h>
+void check(char s1[], char s2[], char s[], int n)
+{
+    char a[2000] = "\0";
+    for (int d = 0; d <= 2 * n; d++)
+    {
+        if (!strcmp(a, s))
+        {
+            printf("%d\n", d);
+            return;
+        }
+        int p = 0;
+        for (int i = 0; i < n; i++)
+        {
+            a[p++] = s2[i];
+            a[p++] = s1[i];
+        }
+        for (int i = 0; i < n; i++)
+            s1[i] = a[i];
+        for (int i = n; i < 2 * n; i++)
+            s2[i - n] = a[i];
+    }
+    printf("-1\n");
+}
+int main()
+{
+    while (1)
+    {
+        int n;
+        scanf("%d", &n);
+        if (n == 0)
+            return 0;
+        char s1[1000], s2[1000], s[2000];
+        scanf("%s%s%s", s1, s2, s);
+        check(s1, s2, s, n);
+    }
+}
