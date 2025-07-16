@@ -1,0 +1,64 @@
+/*
+Viết chương trình cộng hai số nguyên dương bất kỳ (không quá 500 chữ số).
+Input:
+Dòng 1 ghi số bộ test. Mỗi bộ test gồm 2 dòng, mỗi dòng ghi một số nguyên
+dương
+Output:
+Với mỗi bộ test ghi ra một số nguyên dương là tổng hai số đã cho (số này cũng
+không quá 500 chữ số).
+Ví dụ:
+
+Input
+
+3
+12
+100
+1212
+8888
+121212121212121212
+45678978
+Output
+
+
+112
+10100
+121212121257800190
+*/
+#include <stdio.h>
+#include <string.h>
+
+#define MAXN 501
+
+void addLargeNumbers(char* num1, char* num2, char* result) {
+    int len1 = strlen(num1);
+    int len2 = strlen(num2);
+    int maxLen = len1 > len2 ? len1 : len2;
+    int carry = 0, k = 0;
+    char temp[MAXN];
+    int i = len1 - 1, j = len2 - 1;
+    while (i >= 0 || j >= 0 || carry) {
+        int digit1 = (i >= 0) ? num1[i] - '0' : 0;
+        int digit2 = (j >= 0) ? num2[j] - '0' : 0;
+        int sum = digit1 + digit2 + carry;
+        carry = sum / 10;
+        temp[k++] = (sum % 10) + '0';
+        if (i >= 0) i--;
+        if (j >= 0) j--;
+    }
+    for (int t = 0; t < k; t++) {
+        result[t] = temp[k - 1 - t];
+    }
+    result[k] = '\0';
+}
+int main() {
+    int T;
+    char num1[MAXN], num2[MAXN], result[MAXN];
+    scanf("%d", &T);
+    for (int t = 0; t < T; t++) {
+        scanf("%s", num1);
+        scanf("%s", num2);
+        addLargeNumbers(num1, num2, result);
+        printf("%s\n", result);
+    }
+    return 0;
+}
