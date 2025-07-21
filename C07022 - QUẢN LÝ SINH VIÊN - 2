@@ -1,0 +1,146 @@
+/*
+Thông tin về sinh viên gồm có:
+
+1. mã sinh viên là số nguyên tự động tăng;
+
+2. tên sinh viên;
+
+3. điểm sinh viên là số thực gồm điểm môn A, môn B, môn C.
+
+ 
+
+Viết chương trình thực hiện 3 chức năng:
+
+1. thêm mới
+
+2. cập nhật điểm theo mã sinh viên
+
+3. hiển thị danh sách các sinh viên có điểm 3 môn tăng dần (theo thứ tự xuất hiện)
+
+Input:
+
+- Dòng thứ nhất là lựa chọn chức năng thực hiện
+
+- Dòng thứ hai
+
++ Nếu lựa chọn ở dòng thứ nhất là 1 thì nhập số sinh viên sẽ thêm mới
+
++ Nếu lựa chọn ở dòng thứ nhất là 2 thì nhập mã sinh viên sẽ sửa đổi
+
+- Dòng tiếp theo là thông tin sinh viên
+
+Chức năng 3 cũng là kết thúc của luồng input
+
+ 
+
+Output:
+
+- Nếu lựa chọn là 1 thì in ra số sinh viên được thêm
+
+- Nếu lựa chọn là 2 thì in ra mã sinh viên được sửa
+
+- Nếu lựa chọn là 3 thì in ra danh sách theo mô tả dưới đây (các thông tin cách nhau một khoảng trắng)
+
+Ví dụ:
+
+Input
+
+1
+
+2
+
+nguyen van hai
+
+8.5 5.5 7.5
+
+tran van tuan
+
+8.5 6.5 9.0
+
+2
+
+2
+
+tran van nam
+
+5.5 6.0 7.0
+
+3
+
+Output
+
+
+2
+
+2
+
+2 tran van nam 5.5 6.0 7.0
+*/
+#include <stdio.h>
+#include <string.h>
+struct Student
+{
+    int msv;
+    char name[100];
+    float a, b, c;
+    float sum;
+};
+struct Student f[100];
+void add(int n)
+{
+    int d = 1;
+    while (d <= n)
+    {
+        f[d].msv = d;
+        scanf("\n");
+        gets(f[d].name);
+        scanf("%f%f%f", &f[d].a, &f[d].b, &f[d].c);
+        f[d].sum = f[d].a + f[d].b + f[d].c;
+        d++;
+    }
+}
+void change(int d)
+{
+    scanf("\n");
+    gets(f[d].name);
+    scanf("%f%f%f", &f[d].a, &f[d].b, &f[d].c);
+}
+void show(int i)
+{
+    printf("%d ", f[i].msv);
+    printf("%s ", f[i].name);
+    printf("%.1f %.1f %.1f\n", f[i].a, f[i].b, f[i].c);
+}
+void check(int n)
+{
+    for (int i = 1; i <= n; i++)
+        if (f[i].a < f[i].b && f[i].b < f[i].c)
+            show(i);
+}
+int main()
+{
+    int n;
+    while (1)
+    {
+        int x = 0;
+        scanf("%d", &x);
+        if (x == 1)
+        {
+            scanf("%d\n", &n);
+            add(n);
+            printf("%d\n", n);
+        }
+        else if (x == 2)
+        {
+            int m;
+            scanf("%d", &m);
+            change(m);
+            printf("%d\n", m);
+        }
+        else
+        {
+            check(n);
+            return 0;
+        }
+    }
+}
