@@ -1,0 +1,36 @@
+/*
+Cho số nguyên dương N không quá 9 chữ số.
+
+Hãy đếm xem N có bao nhiêu chữ số.
+
+Input
+
+Chỉ có một số nguyên dương N không quá 9 chữ số. 
+
+Output
+
+Ghi ra kết quả trên một dòng
+
+Ví dụ
+
+Input
+
+1234
+
+Output
+
+
+4
+
+
+*/
+#include <stdio.h>
+int main(){
+	int a,s=0;
+	scanf("%d",&a);
+	while(a!=0){
+		s++;
+		a/=10;
+	}
+	printf("%d",s);
+}
