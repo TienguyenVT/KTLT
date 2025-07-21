@@ -1,0 +1,93 @@
+/*
+Hãy sắp xếp danh sách các mặt hàng theo lợi nhuận giảm dần. Mỗi mặt hàng gồm các thông tin: Mã mặt hàng (là một số nguyên, tự động tăng, tính từ 1); Tên mặt hàng, nhóm hàng: là các xâu ký tự; Giá mua, giá bán: là các số thực (không quá 9 chữ số)
+
+Input:
+
+Dòng đầu chứa số mặt hàng. Mỗi mặt hàng viết trên 4 dòng: Dòng 1: Tên mặt hàng. Dòng 2: Nhóm hàng. Dòng 3: Giá mua. Dòng 4: Giá bán
+
+Output: Ghi ra danh sách mặt hàng đã sắp xếp theo lợi nhuận giảm dần (lợi nhuận tính bằng giá bán trừ đi giá mua). Mỗi mặt hàng viết trên một dòng gồm: mã, tên, nhóm hàng và lợi nhuận. Các thông tin cách nhau đúng 1 khoảng trống. Lợi nhuận viết với 2 chữ  số sau dấu phẩy. 
+
+Ví dụ:
+
+Input
+
+3
+
+May tinh SONY VAIO
+
+Dien tu
+
+16400
+
+17699
+
+Tu lanh Side by Side
+
+Dien lanh
+
+18300
+
+25999
+
+Banh Chocopie
+
+Tieu dung
+
+27.5
+37
+
+Output
+
+
+2 Tu lanh Side by Side Dien lanh 7699.00
+
+1 May tinh SONY VAIO Dien tu 1299.00
+
+3 Banh Chocopie Tieu dung 9.50
+*/
+#include <stdio.h>
+#include <string.h>
+struct Item
+{
+    int id;
+    char name[100];
+    char group[100];
+    double buyPrice;
+    double sellPrice;
+    double profit;
+};
+int cmp(struct Item a, struct Item b)
+{
+    if (a.profit < b.profit)
+        return 1;
+    return 0;
+}
+void swap(struct Item *a, struct Item *b)
+{
+    struct Item c = *a;
+    *a = *b;
+    *b = c;
+}
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    struct Item a[n + 1];
+    for (int i = 1; i <= n; i++)
+    {
+        scanf("\n");
+        a[i].id = i;
+        gets(a[i].name);
+        gets(a[i].group);
+        scanf("%lf%lf", &a[i].buyPrice, &a[i].sellPrice);
+        a[i].profit = a[i].sellPrice - a[i].buyPrice;
+    }
+    for (int i = 1; i <= n; i++)
+        for (int j = i + 1; j <= n; j++)
+            if (cmp(a[i], a[j]))
+                swap(&a[i], &a[j]);
+    for (int i = 1; i <= n; i++)
+    {
+        printf("%d %s %s %.2lf\n", a[i].id, a[i].name, a[i].group, a[i].profit);
+    }
+}
