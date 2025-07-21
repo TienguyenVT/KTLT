@@ -1,0 +1,83 @@
+/*
+Viết chương trình nhân ba ma trận A(mxn) với B(nxp) và C(pxq) để được D=AxBxC
+
+In:
+
+Hàng đầu là các giá trị m,n,p và q (các giá trị cách nhau bởi dấu cách
+
+m hàng tiết theo là các phần tử của ma trận A
+
+n hàng tiếp theo là các phần tử của ma trận B
+
+p hàng tiếp theo là các phần tử của ma trận C
+
+Out:
+
+Ma trận kết quả D
+
+ 
+
+Ví dụ:
+
+In:
+
+4    3    2    2
+2    5    4    
+4    1    9    
+3    5    2    
+3    9    3    
+5    7    
+3    7    
+2    4    
+7    7    
+5    4
+
+Out:
+
+556    491    
+642    571    
+558    494    
+816    720
+*/
+#include <stdio.h>
+int main()
+{
+    int m, n, p, q;
+    scanf("%d%d%d%d", &m, &n, &p, &q);
+    long long a[100][100], b[100][100], c[100][100];
+    int i, j, k;
+    for (i = 1; i <= m; i++)
+        for (j = 1; j <= n; j++)
+            scanf("%lld", &a[i][j]);
+    for (i = 1; i <= n; i++)
+        for (j = 1; j <= p; j++)
+            scanf("%lld", &b[i][j]);
+    for (i = 1; i <= p; i++)
+        for (j = 1; j <= q; j++)
+            scanf("%lld", &c[i][j]);
+    long long res1[100][100], res2[100][100];
+    for (i = 1; i <= m; i++)
+    {
+        for (j = 1; j <= p; j++)
+        {
+            res1[i][j] = 0;
+            for (k = 1; k <= n; k++)
+                res1[i][j] += a[i][k] * b[k][j];
+        }
+    }
+    for (i = 1; i <= m; i++)
+    {
+        for (j = 1; j <= q; j++)
+        {
+            res2[i][j] = 0;
+            for (k = 1; k <= p; k++)
+                res2[i][j] += res1[i][k] * c[k][j];
+        }
+    }
+    for (i = 1; i <= m; i++)
+    {
+        for (j = 1; j <= q; j++)
+            printf("%lld ", res2[i][j]);
+        printf("\n");
+    }
+}
