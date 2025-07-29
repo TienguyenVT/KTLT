@@ -1,0 +1,62 @@
+/*
+Một số nguyên dương được gọi là số thuận nghịch nếu viết theo chiều ngược lại vẫn có cùng giá trị với số ban đầu. Ví dụ số 121 là số thuận nghịch, số 123 không phải số thuận nghịch.
+
+Viết chương trình kiểm tra số thuận nghịch
+
+Input
+
+Dòng đầu ghi số bộ test, mỗi bộ test ghi một số nguyên dương không quá 18 chữ số 
+
+Output
+
+Với mỗi bộ test, nếu đúng ghi ra YES, nếu sai ghi ra NO.  
+
+Ví dụ
+
+Input
+
+2
+
+123456789012345
+
+12345678987654321
+
+Output
+
+
+NO
+
+YES
+*/
+#include <stdio.h>
+#include <string.h>
+
+void check_palindrome() {
+    char s[20];
+    scanf("%s", s);
+
+    int len = strlen(s);
+    int is_palindrome = 1;
+
+    for (int i = 0; i < len / 2; i++) {
+        if (s[i] != s[len - 1 - i]) {
+            is_palindrome = 0;
+            break;
+        }
+    }
+
+    if (is_palindrome) {
+        printf("YES\n");
+    } else {
+        printf("NO\n");
+    }
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        check_palindrome();
+    }
+    return 0;
+}
