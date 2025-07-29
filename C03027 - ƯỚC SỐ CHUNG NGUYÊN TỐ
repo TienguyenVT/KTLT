@@ -1,0 +1,89 @@
+/*
+Cho hai số nguyên dương a và b. Hãy kiểm tra xem ước số chung lớn nhất của hai số này có tổng chữ số là nguyên tố hay không.
+
+Ví dụ a = 42, b = 28, ước số chung lớn nhất = 14. Tổng chữ số của ước số chung là 1+4=5 là một số nguyên tố.
+
+Input
+
+Dòng đầu ghi số bộ test. Mỗi test ghi trên một dòng hai số nguyên dương a,b (không quá 6 chữ số)
+
+Output
+
+Ghi ra YES hoặc NO tùy thuộc kết quả kiểm tra
+
+Ví dụ
+
+Input
+
+3
+
+28 42
+
+123 18
+
+550 55
+
+
+Output
+
+YES
+
+YES
+
+NO
+*/
+#include <stdio.h>
+#include <math.h>
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+int sum_digits(int n) {
+    int sum = 0;
+    while (n > 0) {
+        sum += n % 10;
+        n /= 10;
+    }
+    return sum;
+}
+
+int is_prime(int n) {
+    if (n < 2) {
+        return 0;
+    }
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void solve() {
+    int a, b;
+    scanf("%d %d", &a, &b);
+    
+    int gcd_val = gcd(a, b);
+    int digit_sum = sum_digits(gcd_val);
+    
+    if (is_prime(digit_sum)) {
+        printf("YES\n");
+    } else {
+        printf("NO\n");
+    }
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        solve();
+    }
+    return 0;
+}
