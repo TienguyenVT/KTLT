@@ -1,0 +1,72 @@
+/*
+Trong toán học, cặp số (a,b) được gọi là nguyên tố cùng nhau nếu ước số chung lớn nhất của a và b bằng 1.
+
+Cho số nguyên dương N không quá 9 chữ số. Hãy kiểm tra xem N và số đảo của N có phải là một cặp số nguyên tố cùng nhau hay không.
+
+Input
+
+Dòng đầu ghi số bộ test, không quá 20.
+
+Mỗi bộ test ghi trên một dòng số nguyên dương N, không quá 9 chữ số.
+
+Output
+
+Với mỗi bộ test, ghi ra YES hoặc NO tùy thuộc kết quả kiểm tra.
+
+Ví dụ
+
+Input
+
+2
+
+123
+
+997
+Output
+
+
+NO
+
+YES
+*/
+#include <stdio.h>
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+int reverse_number(int n) {
+    int reversed = 0;
+    while (n > 0) {
+        reversed = reversed * 10 + n % 10;
+        n /= 10;
+    }
+    return reversed;
+}
+
+void solve() {
+    int n;
+    scanf("%d", &n);
+    
+    int reversed_n = reverse_number(n);
+    
+    if (gcd(n, reversed_n) == 1) {
+        printf("YES\n");
+    } else {
+        printf("NO\n");
+    }
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        solve();
+    }
+    return 0;
+}
