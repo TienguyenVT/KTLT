@@ -1,0 +1,62 @@
+/*
+Cho hai số nguyên dương a và b không quá 106.
+
+Hãy kiểm tra tính chất thuận nghịch của a và b. Biết rằng một số được coi là thuận nghịch nếu viết ngược lại vẫn được giá trị như ban đầu (ví dụ: 8, 34543, 11233211).
+
+Nếu một trong hai số là thuận nghịch, số còn lại không phải thuận nghịch thì in ra YES, ngược lại in ra NO.
+
+Input
+
+Chỉ có 1 dòng ghi 2 số nguyên dương a và b. Các số không quá 109.  
+
+Output
+
+Ghi ra YES hoặc NO tùy thuộc kết quả kiểm tra
+
+Ví dụ
+
+Input
+
+Output
+
+21 77
+
+YES
+
+22 919
+
+NO
+*/
+#include <stdio.h>
+
+int is_palindrome(int n) {
+    int original_number = n;
+    int reversed_number = 0;
+    
+    while (n > 0) {
+        int digit = n % 10;
+        reversed_number = reversed_number * 10 + digit;
+        n /= 10;
+    }
+    
+    if (original_number == reversed_number) {
+        return 1;
+    }
+    return 0;
+}
+
+int main() {
+    int a, b;
+    scanf("%d %d", &a, &b);
+    
+    int check_a = is_palindrome(a);
+    int check_b = is_palindrome(b);
+    
+    if (check_a != check_b) {
+        printf("YES");
+    } else {
+        printf("NO");
+    }
+    
+    return 0;
+}
