@@ -1,0 +1,90 @@
+Đề bài
+Xây dựng một lớpWarehouseđể quản lý thông tin về các sản phẩm trong kho. Lớp này cần hỗ trợ các chức năng sau:
+
+Thêm sản phẩm:Thêm một sản phẩm mới vào kho với thông tin về giá (price) và số lượng tồn kho (stock).
+Lấy giá sản phẩm:Truy xuất giá của một sản phẩm dựa trên tên sản phẩm.
+Xây dựng lớpWarehouseđể lưu trữ thông tin sản phẩm
+
+Triển khai phương thứcaddProduct(String product, int price, int stock)để thêm sản phẩm vào kho.
+Triển khai phương thứcprice(String product)để lấy giá của sản phẩm. Nếu sản phẩm không tồn tại trong kho, trả về -99.
+Thêm mới vào kho dữ liệu như sau
+
+product	price	stock
+milk	3	10
+coffee	5	7
+
+
+
+Viết ra ngoài màn hình kết quả hiển thị giá (price) của các mặt hàng sau
+
+milk
+coffee
+sugar
+
+Dữ liệu vào
+- Đề bài không có dữ liệu vào
+
+
+Dữ liệu ra
+Viết ra ngoài màn hình kết quả hiển thị giá (price) của các mặt hàng sau
+
+milk
+coffee
+sugar
+
+Ví dụ
+Input #1 
+
+<trống>
+Output #1 
+
+prices:
+milk: 3
+coffee: 5
+sugar: -99
+
+----------------------------------------------------------------------------------------------------------------------
+import java.util.*;
+
+class Warehouse
+{
+    private HashMap<String, Integer> productPrice;
+    private HashMap<String, Integer> productStock;
+
+    public Warehouse()
+    {
+        this.productPrice = new HashMap<> ();
+        this.productStock = new HashMap<> ();
+    }
+
+    // Them san pham va kho
+    public void addProduct(String product, int price, int stock)
+    {
+        productPrice.put(product, price);
+        productStock.put(product, stock);
+    }
+
+    // Lay gia san pham
+    public int price(String product)
+    {
+        return productPrice.getOrDefault(product, -99);   
+    }
+}
+
+public class Main 
+{    
+    public static void main(String[] args)
+    {
+        Warehouse warehouse = new Warehouse();
+
+        // Them san pham vao kho
+        warehouse.addProduct("milk", 3, 10);
+        warehouse.addProduct("coffee", 5, 7);
+
+        // Output
+        System.out.println("prices:");
+        System.out.println("milk: " + warehouse.price("milk"));
+        System.out.println("coffee: " + warehouse.price("coffee"));
+        System.out.println("sugar: " + warehouse.price("sugar"));
+    }
+}
