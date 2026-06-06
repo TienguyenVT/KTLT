@@ -38,37 +38,30 @@ Output #1
 -2
 -5
 */
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        int t = scanner.nextInt();
-        scanner.nextLine();
-
-        while (t-- > 0) {
-            String line = scanner.nextLine().trim();
-            String[] arr = line.split("\\s+");
-
-            if (arr.length < 2) {
-                System.out.println(0);
-                continue;
+import java.util.*;
+    public class Main{
+        public static int minGap(String line){
+            String[] a = line.trim().split("\\s+");
+            if (a.length <2){
+                return 0;
             }
-
-            int min = Integer.parseInt(arr[1]) - Integer.parseInt(arr[0]);
-
-            for (int i = 1; i < arr.length - 1; i++) {
-                int gap = Integer.parseInt(arr[i + 1]) - Integer.parseInt(arr[i]);
-
-                if (gap < min) {
+            
+            int min = Integer.parseInt(a[1])-Integer.parseInt(a[0]);
+            for ( int i =1; i<a.length - 1;i++){
+                int gap = Integer.parseInt(a[i+1])-Integer.parseInt(a[i]);
+                if ( gap<min){
                     min = gap;
                 }
             }
-
-            System.out.println(min);
+            return min;
         }
-
-        scanner.close();
+        public static void main(String[] args){
+            Scanner scanner = new Scanner(System.in);
+            int t = scanner.nextInt();
+            scanner.nextLine();
+            while (t--> 0){
+                String line = scanner.nextLine();
+                System.out.println(minGap(line));
+            }
+        }
     }
-}
