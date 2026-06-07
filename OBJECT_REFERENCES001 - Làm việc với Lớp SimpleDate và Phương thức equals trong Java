@@ -1,0 +1,78 @@
+/*
+Đề bài
+Tạo lớpSimpleDate
+Thuộc tính:
+
+day: Ngày.
+month: Tháng.
+year: Năm.
+Constructor:
+
+Khởi tạo đối tượngSimpleDatevới ngày, tháng và năm.
+Phương thức:
+
+equals(Object obj): Phương thức này được ghi đè từ lớpObjectđể so sánh hai đối tượngSimpleDate. Nó kiểm tra xem đối tượng đầu vào có phải là một đối tượngSimpleDatevà so sánh các thuộc tínhday,month, vàyear. Nếu các thông số ngày tháng năm giống nhau thì kết quả trả về True và ngược lại.
+
+2. Tạo lớp Main
+
+Tạo đối tượngSimpleDatevà kiểm tra các phép so sánh bằng cách sử dụng phương thứcequals. Cho 1 ngày cho sẵn vớingày = 1, tháng = 2, năm = 2000.
+
+In kết quả của các phép so sánh ra màn hình của ngày nêu trên với các giá trị dưới đây để kiểm tra tính đúng đắn với các giá trị sau
+
+heh
+Ngày 5 tháng 2 năm 2012
+Ngày 1 tháng 2 năm 2000
+
+Dữ liệu vào
+- Đề bài không có dữ liệu vào
+
+
+Dữ liệu ra
+- In ra dữ liệu ra như trên kết quả
+
+
+Ví dụ
+Input #1 
+
+<trống>
+Output #1 
+
+false
+false
+true
+*/
+
+class SimpleDate {
+    private int day;
+    private int month;
+    private int year;
+
+    public SimpleDate(int day, int month, int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof SimpleDate)) {
+            return false;
+        }
+
+        SimpleDate other = (SimpleDate) obj;
+
+        return this.day == other.day
+            && this.month == other.month
+            && this.year == other.year;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SimpleDate date = new SimpleDate(1, 2, 2000);
+
+        System.out.println(date.equals(" "));
+        System.out.println(date.equals(new SimpleDate(5, 2, 2012)));
+        System.out.println(date.equals(new SimpleDate(1, 2, 2000)));
+    }
+}
