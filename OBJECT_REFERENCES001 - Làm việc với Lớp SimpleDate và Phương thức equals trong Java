@@ -41,38 +41,36 @@ false
 false
 true
 */
-
-class SimpleDate {
+class sd {
     private int day;
     private int month;
     private int year;
-
-    public SimpleDate(int day, int month, int year) {
+    
+    public sd ( int day, int month, int year){
         this.day = day;
         this.month = month;
         this.year = year;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof SimpleDate)) {
+    
+    public boolean eq (Object obj){
+        if (!(obj instanceof sd)){
             return false;
         }
-
-        SimpleDate other = (SimpleDate) obj;
-
-        return this.day == other.day
-            && this.month == other.month
-            && this.year == other.year;
+        
+        sd other =(sd) obj;
+        return this.day == other.day 
+            && this.month == other.month 
+            &&this.year == other.year;
     }
 }
 
 public class Main {
-    public static void main(String[] args) {
-        SimpleDate date = new SimpleDate(1, 2, 2000);
-
-        System.out.println(date.equals(" "));
-        System.out.println(date.equals(new SimpleDate(5, 2, 2012)));
-        System.out.println(date.equals(new SimpleDate(1, 2, 2000)));
+    public static void main ( String [] args){
+        sd date = new sd(1, 2, 3);
+        
+        System.out.println(date.eq(" "));
+        System.out.println(date.eq(new sd(1, 2, 4)));
+        System.out.println(date.eq(new sd(1, 2, 3)));
     }
 }
+
