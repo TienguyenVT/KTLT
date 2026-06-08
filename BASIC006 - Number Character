@@ -1,0 +1,46 @@
+/*
+Đề bài
+Hãy viết chương trình in ra tổng số kí tự là chữ số trên một dòng dữ liệu vào.
+
+
+Dữ liệu vào
+- Dòng đầu tiên nhập số lượng test case
+
+- Dòng thứ 2 trở đi nhập chuỗi để kiểm tra
+
+
+Dữ liệu ra
+Tương ứng với mỗi dòng trong dữ liệu vào, in ra số lượng kí tự là chữ số.
+
+
+Ví dụ
+Input #1 
+
+2
+OOP
+OOP23
+Output #1 
+
+0
+2
+*/
+
+import java.util.*;
+public class Main {
+    public static void main (String[] args){
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        scanner.nextLine();
+        while (t-- > 0){
+            String s = scanner.nextLine();
+            int count =0;
+            for (int i=0;i<s.length();i++){
+                char c = s.charAt(i);
+                if(Character.isDigit(c)){
+                    count++;
+                }
+            }
+            System.out.println(count);
+        }
+    }
+} 
