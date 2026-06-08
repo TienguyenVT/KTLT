@@ -1,0 +1,122 @@
+/*
+Đề bài
+Mô tả bài toán
+Viết một chương trình Java để quản lý và so sánh thông tin về các bài hát. Một bài hát được biểu diễn bằng lớpSong, bao gồm các thuộc tính và phương thức sau:
+
+Thuộc tính của bài hát (Song):
+
+name: Tên bài hát (kiểu chuỗi).
+author: Tên tác giả (kiểu chuỗi).
+duration: Thời lượng của bài hát (kiểu số nguyên, tính bằng giây).
+Phương thức của lớpSong:
+
+Hàm khởi tạo (constructor) nhận vào tên, tác giả, và thời lượng của bài hát.
+Phương thứcequals(Song song):
+So sánh hai bài hát dựa trêntên,tác giả, vàthời lượng.
+Trả vềtruenếu cả ba thông tin này giống nhau, ngược lại trả vềfalse.
+LớpMain:
+
+Đọc dữ liệu đầu vào từ người dùng:
+Số lượng cặp bài hát cần so sánh.
+Hai dòng thông tin về bài hát cho mỗi cặp.
+Mỗi dòng thông tin bài hát chứa:
+<Tên bài hát> <Tác giả> <Thời lượng>
+
+So sánh từng cặp bài hát và in kết quả ra màn hình (truehoặcfalse).
+
+
+Dữ liệu vào
+Một số nguyênn(1 ≤n≤ 100), biểu thị số cặp bài hát cần so sánh.
+Tiếp theo là2ndòng, mỗi dòng chứa thông tin về một bài hát theo định dạng:<Tên bài hát> <Tác giả> <Thời lượng>
+<Tên bài hát>và<Tác giả>là chuỗi không chứa khoảng trắng.
+<Thời lượng>là số nguyên dương (giây).
+
+Dữ liệu ra
+Với mỗi cặp bài hát, in ratruenếu chúng giống nhau hoàn toàn (theo định nghĩa trong phương thứcequals), ngược lại infalse.
+
+
+Ví dụ
+Input #1 
+
+10
+TheLonelyIsland JackSparrow 196
+TheLonelyIsland JackSparrow 196
+TutnwgtUU5HYWwSZPnCoZqQ WfYKG7RyWIoz0uF 28
+WWENNkvdIBtnGueVqe3d01oLitsXDi 604ULv287muV8Kpot 92
+Fsh9f8EzY1S w2Lvmr5sNzcyFyoCBJ 30
+hOReCUoNc1MZmv AIPpXTj1L1O4SW4iSD8sp863 83
+GG74UzsvslVzKmqKnSVIevFcaLHW 7JexSJ0piMpxHUPuFxJI1ZYVnPYV 13
+9Ty0YT9HeEgjzR00sqjwsE8LJ5kS73 WPVynjxolXSso 22
+WX0HOI4D6g8iwyFGeyjKZYzedaza1 IAbbed41kUvoATo8mwId28U 11
+K24iJUSPKsBkm 0gHXbtyV4yv 99
+VbczuSrHOCQzuqclilJODTBJ0iDFJG SzM0Sr472slIHuHie8hhrKVC 46
+i6gNdLsOJA40h7Cs NAr0RBowaSWGm 74
+ybDJYqNClg4JLL2HQcPMDCOAUnzR fX0dImC1MX4lmZVmqYln30 64
+kzRBGmKfDa cu9HTBcsyspR2w9p0ETZ 37
+IUWQTXCzbBcK4rHSQS3Pt fZKLIQSynGEr 23
+8YeAL09ENtTLbcsoCHW3 JE1EPcFh133 93
+bFCt7IiwKIh iNWOCjn0niuzgdjAH9nGnP2zJafw9J 27
+jO5tqWVg2xMygH4dMaeqPZ7DfSLS 1gcTYRQ088Pct26hPDTm 52
+Wqg6oduONnD0O3zi7QOVyaYC3exEKj fCb8ZYuBZbdvrnig01WQshH8 43
+IeR6FrhfDf4OCG mh3JFztyFq8p99 36
+Output #1 
+
+true
+false
+false
+false
+false
+false
+false
+false
+false
+false
+*/
+
+import java.util.*;
+class Song{
+    private String name;
+    private String author;
+    private int duration;
+
+    public Song(String name, String author, int duration) {
+        this.name = name;
+        this.author = author;
+        this.duration = duration;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getDuration() {
+        return duration;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        scanner.nextLine();
+        while (t-- > 0){
+            String name1 = scanner.next();
+            String author1 = scanner.next();
+            int duration1 = scanner.nextInt();
+            Song song1 = new Song(name1, author1, duration1);
+            String name2 = scanner.next();
+            String author2 = scanner.next();
+            int duration2 = scanner.nextInt();
+            Song song2 = new Song(name2, author2, duration2);
+            if(song1.getName().equals(song2.getName()) && song1.getAuthor().equals(song2.getAuthor()) && song1.getDuration() == song2.getDuration()){
+                System.out.println("true");
+            }
+            else{
+                System.out.println("false");
+            }
+        }
+    }
+}
