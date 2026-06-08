@@ -1,0 +1,129 @@
+/*
+Đề bài
+Bạn có một doanh nghiệp sản xuất điện thoại di động.Nhưng bạn không có các nhà phát triển phần mềm, vì vậy bạn gọi cho bạn bè và nhờ họ giúp bạn tạo phần mềm cho điện thoại di động. Họ đồng ý và bạn bắt đầu làm việc trên dự án.
+
+Dự án bao gồm một mô hình chính - một chiếc điện thoại thông minh (Smartphone). Mỗi chiếc điện thoại thông minh của bạn nên có chức năng gọi điện và duyệt web. Bạn bè của bạn rất bận rộn, vì vậy bạn quyết định tự viết mã.
+
+Đây là nhiệm vụ bắt buộc:Bạn nên có một model - Smartphone và hai chức năng riêng biệt mà điện thoại thông minh của bạn có - để gọi điện thoại khác (call) và duyệt web trên toàn cầu (browser). Bạn kết thúc với một class và hai interfaces như sau.
+
+
+
+Đầu tiên sẽ gọi các số trong danh sách số điện thoại, sau đó được duyệt danh sách các trang web
+
+Khi gọi số điện thoại thì trên cửa sổ console in ra số đang được gọi theo format:Calling... <number>
+
+Khi duyệt web thì trên cửa sổ console trang web in ra đang được duyệt theo format:Browsing: <site>!. Chú ý dấu chấm than cuối dòng.
+
+Nếu như trong url có số thì in ra: "Invalid URL!" và tiếp tục in danh sách urls còn lại
+
+Nếu như trong số điện thoại có tồn tại kí tự khác từ [0,9] thì in ra "Invalid number!" và tiếp tục đến số tiếp theo
+
+
+Dữ liệu vào
+- Dòng đầu tiên là số lượng test case
+
+- Dòng thứ 2 là danh sách số điện thoại được gọi, cách nhau bằng một dấu cách " "
+
+- Dòng thứ 3 là danh sách urls được duyệt, cách nhau bằng một dấu " "
+
+- Các urls của site chỉ bao gồm kí tự và kí hiệu (không cho phép số trên địa chỉ Url)
+
+
+Dữ liệu ra
+- Ỉn ra kết quả khi quay số và duyệt các urls
+
+
+Ví dụ
+Input #1 
+
+1
+0866723848 7dN3t1XUZb O27r6tPMjV fDjiBYjkJc GvE4Tn6CsL 0609204726
+https://6Pm1Vwkd.org/Xy7i66NsDl2K http://KO01SAgB.biz/k1oOkOVu9kKR https://GcoXneSX.com/cchIFliXXtpL http://PFsbiXLf.org/XouAOnWeJziu https://WdvxEGDV.net/jPiLWBvgizDz https://1jOOX7g9.info/TKZ9n06eyBJN
+Output #1 
+
+Calling... 0866723848
+Invalid number!
+Invalid number!
+Invalid number!
+Invalid number!
+Calling... 0609204726
+Invalid URL!
+Invalid URL!
+Browsing: https://GcoXneSX.com/cchIFliXXtpL!
+Browsing: http://PFsbiXLf.org/XouAOnWeJziu!
+Browsing: https://WdvxEGDV.net/jPiLWBvgizDz!
+Invalid URL!
+Input #2 
+
+1
+0736047973 0772243984 0674847919 0435752730 CnIImXorVP VzY0kxl4qu
+http://VtKLDbRp.net/LVWRWzbskurz http://eIlMCDwJ.org/voTuAATBwXPb https://pAJv49Mc.info/fK4PxDrDVdve https://R6dy57fq.biz/l0E2IyYYdAdB http://GVWKHipR.biz/FTmnHdghLhUD https://NEuObBZC.biz/RjadettYENcs
+Output #2 
+
+Calling... 0736047973
+Calling... 0772243984
+Calling... 0674847919
+Calling... 0435752730
+Invalid number!
+Invalid number!
+Browsing: http://VtKLDbRp.net/LVWRWzbskurz!
+Browsing: http://eIlMCDwJ.org/voTuAATBwXPb!
+Invalid URL!
+Invalid URL!
+Browsing: http://GVWKHipR.biz/FTmnHdghLhUD!
+Browsing: https://NEuObBZC.biz/RjadettYENcs!
+*/
+
+import java.util.*;
+
+interface Callable {
+    void call(String number);
+}
+
+interface Browsable {
+    void browse(String url);
+}
+
+class SmartPhone implements Callable, Browsable {
+
+    public void call(String number) {
+        if (number.matches("\\d+")) {
+            System.out.println("Calling... " + number);
+        } else {
+            System.out.println("Invalid number!");
+        }
+    }
+
+    public void browse(String url) {
+        if (url.matches("[^0-9]+")) {
+            System.out.println("Browsing: " + url + "!");
+        } else {
+            System.out.println("Invalid URL!");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        SmartPhone smartPhone = new SmartPhone();
+
+        int t = scanner.nextInt();
+        scanner.nextLine();
+
+        while (t-- > 0) {
+            String[] numbers = scanner.nextLine().trim().split("\\s+");
+            String[] urls = scanner.nextLine().trim().split("\\s+");
+
+            for (String number : numbers) {
+                smartPhone.call(number);
+            }
+
+            for (String url : urls) {
+                smartPhone.browse(url);
+            }
+        }
+
+        scanner.close();
+    }
+}
