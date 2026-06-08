@@ -1,0 +1,116 @@
+/*
+Đề bài
+Tạo lớpBankAccountvới thuộc tính số dư (balance).
+
+Viết phương thứcwithdraw(double amount)để rút tiền.
+
+Nếu số tiền rút lớn hơn số dư, ném ngoại lệ tùy chỉnhInsufficientFundsException.
+
+Viết chương trình cho phép người dùng nhập số tiền muốn rút.
+
+Xử lý các ngoại lệ:
+
+Số tiền rút âm (IllegalArgumentException).
+
+Số dư không đủ (InsufficientFundsException).
+
+
+Dữ liệu vào
+- Dòng đầu tiên nhập số tiền (balance) trong tài khoản
+
+- Dòng thứ 2 nhập các định dạng nhưabc, số âm, số tiền muốn rút lớn hơn số dư và số tiền hợp lệ
+
+
+Dữ liệu ra
+In raVui lòng nhập số hợp lệ!nếu định dạng số tiền rút không hợp lệ (có chứa chữ cái)
+
+In raLỗi: Số tiền rút không được âm!nếu định dạng số tiền rút nhỏ hơn 0
+
+In raLỗi: Số dư không đủ để rútmoneynếumoney>balancetrong trường hợp số tiền rút lớn hơn số tiền trong tài khoản
+
+In ra số tiền sau khi rút nếu số tiền rút không gặp phải các trường hợp trên
+
+
+Ví dụ
+Input #1 
+
+1
+5000
+abc
+-1000
+6000
+2000
+Output #1 
+
+Lỗi: Vui lòng nhập số hợp lệ!
+Lỗi: Số tiền rút không được âm!
+Lỗi: Số dư không đủ để rút 6000.0
+Rút tiền thành công! Số dư còn lại: 3000.0
+*/
+
+import java.util.*;
+
+class LoiKhongDuTien extends Exception {
+    public LoiKhongDuTien(String thongBao) {
+        super(thongBao);
+    }
+}
+
+class TaiKhoanNganHang {
+    private double soDu;
+
+    public TaiKhoanNganHang(double soDu) {
+        this.soDu = soDu;
+    }
+
+    public void rutTien(double soTienRut) throws LoiKhongDuTien {
+        if (soTienRut < 0) {
+            throw new IllegalArgumentException("Số tiền rút không được âm!");
+        }
+
+        if (soTienRut > soDu) {
+            throw new LoiKhongDuTien("Số dư không đủ để rút " + soTienRut);
+        }
+
+        soDu -= soTienRut;
+    }
+
+    public double laySoDu() {
+        return soDu;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int t = scanner.nextInt();
+        scanner.nextLine();
+
+        double soDuBanDau = Double.parseDouble(scanner.nextLine().trim());
+
+        TaiKhoanNganHang taiKhoan = new TaiKhoanNganHang(soDuBanDau);
+
+        while (scanner.hasNextLine()) {
+            String dongNhap = scanner.nextLine().trim();
+
+            if (dongNhap.isEmpty()) {
+                continue;
+            }
+
+            try {
+                double soTienRut = Double.parseDouble(dongNhap);
+
+                taiKhoan.rutTien(soTienRut);
+
+                System.out.println("Rút tiền thành công! Số dư còn lại: " + taiKhoan.laySoDu());
+            } catch (NumberFormatException e) {
+                System.out.println("Lỗi: Vui lòng nhập số hợp lệ!");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Lỗi: " + e.getMessage());
+            } catch (LoiKhongDuTien e) {
+                System.out.println("Lỗi: " + e.getMessage());
+            }
+        }
+    }
+}
