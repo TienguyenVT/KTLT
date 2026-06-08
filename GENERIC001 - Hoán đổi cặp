@@ -1,0 +1,92 @@
+/*
+Đề bài
+Viết một lớpPair<T>sử dụngLập trình tổng quátđể lưu trữhai đối tượng cùng kiểu dữ liệu.
+
+Tạo lớpPair<T>với:
+
+Hai thuộc tínhfirstvàsecondkiểuT
+
+Constructor để khởi tạo
+
+Getter và Setter cho cả hai thuộc tính
+
+Phương thứcswap()để hoán đổifirstvàsecond
+
+
+Dữ liệu vào
+Dòng đầu tiên nhập số test case
+
+Dòng thứ 2 trở đi nhập giá trịfirstvàsecond. Các giá trị này có thể ở kiểuTbất kì, để đơn giản thìTnhận 2 kiểu dạng số và dạng chuỗi, trong một dòng chỉ nhận 1 kiểu dữ liệu duy nhất
+
+
+Dữ liệu ra
+- In ra 2 giá trị sau khi đảo vị trí, với số có dấu nháy đơn, với chuỗi được bao bọc bằng dấu nháy đơn.
+
+
+Ví dụ
+Input #1 
+
+10
+4 47
+8 78
+vsnpxv dilf
+h kaclgeo
+8 80
+4 20
+vi mgldbciar
+6 66
+dachg gzsx
+icttiobw esphqe
+Output #1 
+
+47 4
+78 8
+'dilf' 'vsnpxv'
+'kaclgeo' 'h'
+80 8
+20 4
+'mgldbciar' 'vi'
+66 6
+'gzsx' 'dachg'
+'esphqe' 'icttiobw'
+*/
+
+import java.util.*;
+class Pair<T>{
+    private T first;
+    private T second;
+    public Pair (T first, T second){
+        this.first = first;
+        this.second = second;
+    }
+    public void swap(){
+        T temp = this.first;
+        this.first = this.second;
+        this.second = temp;
+    }
+    public void display(){
+        if(first instanceof String && !isNumeric((String) first)){
+            System.out.println("'"+first+"' '"+second+"'");
+        }else{
+            System.out.println(first+" "+second);
+        }
+    }
+    private boolean isNumeric(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?");
+    }
+}
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner (System.in);
+        int t = sc.nextInt();
+        sc.nextLine();
+        while(t-->0){
+            String firstInput =sc.next();
+            String secondInput = sc.next();
+            Pair<String> pair = new Pair<>(firstInput,secondInput);
+            pair.swap();
+            pair.display();
+        }
+    }
+
+}
