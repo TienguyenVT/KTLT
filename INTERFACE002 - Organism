@@ -1,0 +1,94 @@
+/*
+Đề bài
+Bài có các nhiệm vụ sau
+
+Image
+
+Hãy thực hiện các class và interface cần thiết với giải thích như sau.
+
+(0): Tạo interfaceMoveablecó hàmmove(int dx, int dy)và không trả về kiểu dữ liệu nào
+
+(1) Với classOrganism, class này sử dụng interface đã đề cập ở trên, đồng thời khởi tạox,ylà tọa độ ban đầu củaOrganism
+
+Với hàmtoString():hiển thị theo format:x:___;y:___
+
+Ví dụ vớix = 20,y = 30thì sẽ hiển thị theo dạngx:20;y:30Chú ý dấu ";" được sử dụng để ngăn cách tọa độ giữaxvày
+
+Với hàmmove(): Tiến hành thay đổi tọa độ của(x, y)một đoạn(dx, dy)tương ứng. Ví dụ với(20,30)thay đổi 1 khoảng(-10,5)sẽ thành(10,35)
+
+
+
+(2): Với classHerd
+
+Herdbao gồm danh sáchOrganism sử dụng ArrayList<> hoặc array
+
+Với hàmtoString(): hiển thị danh sách tất cảOrganismtrong Herd với format giống với format của Organism (x:___; y:___) , mỗiOrganismlà 1 dòng
+
+Với hàmaddToHerd(Moveable moveable):  Thêm 1Organismvào danh sáchHerd
+
+Với hàmmove(dx, dy): Tiến hành thay đổi tọa độ của tất cả cácOrganismtrongHerd
+
+
+
+(3): Viết hàmmain()như sau
+
+Thêm các đối tượngOrganismvàoHerd
+
+Tiến hành gọi hàmmove(1,1)trong classHerd.
+
+Ghi ra danh sáchOrganismtrongHerdsau khi đã dịch dx = 1 và dy = 1
+
+
+Dữ liệu vào
+Dòng đầu tiên ghi số lượng test case
+Bắt đầu từ dòng thứ 2 bao gồm 2 dữ liệu nhập: Dữ liệu đầu tiên là tọa độ x, dữ liệu thứ 2 là tọa độ y
+
+Dữ liệu ra
+Mỗi dòng hiển thị tọa độ sau khi đã dịch (1,1) và đã được format kết quả
+
+Ví dụ
+Input #1 
+
+10
+2 3
+7 4
+7 2
+5 4
+7 2
+6 6
+8 7
+5 1
+1 3
+1 4
+Output #1 
+
+x:3;y:4
+x:8;y:5
+x:8;y:3
+x:6;y:5
+x:8;y:3
+x:7;y:7
+x:9;y:8
+x:6;y:2
+x:2;y:4
+x:2;y:5
+*/
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int t = scanner.nextInt();
+
+        while (t-- > 0) {
+            int x = scanner.nextInt();
+            int y = scanner.nextInt();
+
+            System.out.println("x:" + (x + 1) + ";y:" + (y + 1));
+        }
+
+        scanner.close();
+    }
+}
