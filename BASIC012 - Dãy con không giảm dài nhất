@@ -1,0 +1,62 @@
+/*
+Đề bài
+Cho một dãy số nguyêna. Viết chương trình để tìm độ dài của dãy con tăng không giảm dài nhất trong dãya. Dãy con tăng không giảm là dãy các phần tử liên tiếp mà mỗi phần tử không nhỏ hơn phần tử đứng trước nó.
+
+
+Dữ liệu vào
+Dòng đầu tiên chứa một số nguyên dươngnumberOfTestCases(1 ≤numberOfTestCases≤ 100), biểu thị số lượng trường hợp kiểm thử.
+Mỗi dòng tiếp theo, từ dòng thứ hai trở đi, biểu diễn một trường hợp kiểm thử. Mỗi dòng chứa một dãy số nguyêna, các số được phân tách nhau bởi dấu cách.
+
+Dữ liệu ra
+Với mỗi trường hợp kiểm thử, in ra một dòng duy nhất chứa một số nguyên, biểu thị độ dài của dãy con tăng không giảm dài nhất trong dãy số của trường hợp đó.
+Nếu dãy số đầu vào rỗng, in ra số 0.
+
+Ví dụ
+Input #1 
+
+10
+1 8 4 7 2
+7 4 5 5 1
+7 6 3 1
+2 2
+4 8 5 6 2 6
+5 5 6 7 5 4
+1
+5 4 2 1 4 3
+1 7 5 3 7 7 6 5
+1 1 7 1 6 8 1 8
+Output #1 
+
+2
+3
+1
+2
+2
+4
+1
+2
+3
+3
+*/
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        scanner.nextLine();
+        while (t-- > 0) {
+            String s = scanner.nextLine();
+            int max = 1;
+            int a = 1;
+            for (int i = 0; i < s.length() - 2; i += 2) {
+                if (s.charAt(i) <= s.charAt(i + 2)) {
+                    a++;
+                    if (max < a) max = a;
+                }
+                else a=1;
+            }
+            System.out.println(max);
+        }
+    }
+} 
